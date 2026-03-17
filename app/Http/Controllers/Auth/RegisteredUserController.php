@@ -4,39 +4,40 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws ValidationException
-     */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name'  => ['required', 'string', 'max:255'],
+            'email'      => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
+            'password'   => ['required', 'confirmed', Rules\Password::defaults()],
+            'role'       => ['in:admin,doctor,patient'], // optional
+            'latitude'   => ['nullable', 'numeric'],
+            'longitude'  => ['nullable', 'numeric'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->string('password')),
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'email'      => $request->email,
+            'password'   => $request->password, // auto-hashed by model
+            'role'       => $request->role ?? 'patient',
+            'latitude'   => $request->latitude,
+            'longitude'  => $request->longitude,
         ]);
 
-        event(new Registered($user));
+        // Create Sanctum token
+        $token = $user->createToken('api_token')->plainTextToken;
 
-        Auth::login($user);
-
-        return response()->noContent();
+        return response()->json([
+            'message' => 'User registered successfully',
+            'token'   => $token,
+            'user'    => $user,
+        ]);
     }
 }
