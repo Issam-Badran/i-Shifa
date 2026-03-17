@@ -19,16 +19,11 @@ class NewPasswordController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Attempt password reset
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
-
-                // Auto-hashed by model
-                $user->password = $request->password;
-
+                $user->password = $request->password; // auto-hashed by model
                 $user->save();
-
                 event(new PasswordReset($user));
             }
         );
