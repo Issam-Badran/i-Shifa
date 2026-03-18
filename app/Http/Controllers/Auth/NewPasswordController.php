@@ -7,7 +7,6 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 
 class NewPasswordController extends Controller
 {
@@ -22,16 +21,16 @@ class NewPasswordController extends Controller
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
-                $user->password = $request->password; // auto-hashed by model
+                $user->password = $request->password; // auto-hashed
                 $user->save();
                 event(new PasswordReset($user));
             }
         );
 
         if ($status !== Password::PASSWORD_RESET) {
-            throw ValidationException::withMessages([
-                'email' => [__($status)],
-            ]);
+            return response()->json([
+                'message' => __($status),
+            ], 422);
         }
 
         return response()->json([

@@ -22,7 +22,8 @@ Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->name('password.email');
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
-    ->middleware('guest:sanctum')
+    ->middleware('guest')
+
     ->name('password.reset');
 
 
