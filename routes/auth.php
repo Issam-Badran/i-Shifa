@@ -42,3 +42,5 @@ Route::post('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
 
     ->name('logout');
 });
+
+// I didn't test the verify and verification notification routes
