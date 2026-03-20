@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ApiAuthenticatedSessionController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -13,7 +14,7 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('api.guest')
     ->name('register');
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+Route::post('/login', [ApiAuthenticatedSessionController::class, 'store'])
     ->middleware('api.guest');
 
 
@@ -36,7 +37,7 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 
     ->name('verification.send');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+Route::post('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum')
 
     ->name('logout');
