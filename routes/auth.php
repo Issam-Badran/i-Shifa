@@ -28,15 +28,14 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
 
     ->name('password.reset');
 
+Route::post('/email/verification-notification', [ApiEmailVerificationController::class, 'send'])
+    ->middleware('auth:sanctum')
+    ->name('verification.send');
 
-Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['auth', 'signed', 'throttle:6,1'])
+Route::post('/email/verify', [ApiEmailVerificationController::class, 'verify'])
+    ->middleware('auth:sanctum')
     ->name('verification.verify');
 
-Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    ->middleware('auth:sanctum')
-
-    ->name('verification.send');
 
 Route::post('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum')
