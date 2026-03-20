@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+            'isAdmin' => \App\Http\Middleware\IsAdmin::class,
+            'isDoctor' => \App\Http\Middleware\IsDoctor::class,
+            'isPatient' => \App\Http\Middleware\IsPatient::class,
+            'api.guest' => \App\Http\Middleware\ApiRedirectIfAuthenticated::class,
         ]);
 
         //
