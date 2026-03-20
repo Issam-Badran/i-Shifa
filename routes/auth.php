@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ApiAuthenticatedSessionController;
+use App\Http\Controllers\Auth\ApiEmailVerificationController;
 use App\Http\Controllers\Auth\ApiPasswordResetLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
