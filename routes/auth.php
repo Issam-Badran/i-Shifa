@@ -16,8 +16,8 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
     ->name('register');
 
 Route::post('/login', [ApiAuthenticatedSessionController::class, 'store'])
-    ->middleware('api.guest');
-
+    ->middleware('api.guest')
+    ->name('login');
 
 Route::post('/forgot-password', [ApiPasswordResetLinkController::class, 'store'])
     ->middleware('api.guest')
