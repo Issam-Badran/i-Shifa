@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->group(function () {
 Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest')
+    ->middleware('api.guest')
     ->name('register');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-    ->middleware('guest:sanctum');
+    ->middleware('api.guest');
 
 
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->middleware('guest')
+    ->middleware('api.guest')
     ->name('password.email');
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
-    ->middleware('guest')
+    ->middleware('api.guest')
 
     ->name('password.reset');
 
