@@ -8,4 +8,17 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 
+Route::middleware(['auth:sanctum', 'isAdmin'])->get('/admin/test', function () {
+    return response()->json(['message' => 'Welcome Admin']);
+});
+
+Route::middleware(['auth:sanctum', 'isDoctor'])->get('/doctor/test', function () {
+    return response()->json(['message' => 'Welcome Doctor']);
+});
+
+Route::middleware(['auth:sanctum', 'isPatient'])->get('/patient/test', function () {
+    return response()->json(['message' => 'Welcome Patient']);
+});
+
+
 require __DIR__.'/auth.php';
