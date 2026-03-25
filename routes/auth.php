@@ -11,7 +11,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('api')->group(function () {
+
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('api.guest')
     ->name('register');
@@ -42,6 +42,7 @@ Route::post('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum')
 
     ->name('logout');
-});
+
+    
 
 // I didn't test the verify and verification notification routes
