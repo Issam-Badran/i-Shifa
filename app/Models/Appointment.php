@@ -27,6 +27,12 @@ class Appointment extends Model
         return $this->belongsTo(Doctor::class);
     }
 
+    public function walletTransactions()
+{
+    return $this->hasMany(WalletTransaction::class);
+}
+
+
     /**
      * Mark appointment as completed.
      */

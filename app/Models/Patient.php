@@ -26,6 +26,11 @@ class Patient extends Model
     return $this->hasMany(Appointment::class);
 }
 
+public function WalletTransaction ()
+{
+    return $this->hasMany(WalletTransaction::class);
+}
+
     /**
      * Register a successful appointment.
      */
