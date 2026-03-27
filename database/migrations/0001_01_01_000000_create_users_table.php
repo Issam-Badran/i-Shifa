@@ -21,7 +21,7 @@ return new class extends Migration
     $table->string('phone')->nullable();
 
     $table->enum('role', ['admin', 'doctor', 'patient'])->default('patient');
-    $table->enum('status', ['active', 'banned', 'pending', 'suspended'])->default('active');
+    $table->enum('status', ['active', 'banned', 'suspended'])->default('active');
 
     $table->decimal('latitude', 10, 7)->nullable();
     $table->decimal('longitude', 10, 7)->nullable();
