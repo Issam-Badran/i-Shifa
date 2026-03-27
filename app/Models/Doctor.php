@@ -28,6 +28,12 @@ class Doctor extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function appointments()
+{
+    return $this->hasMany(Appointment::class);
+}
+
+
     /**
      * Set consultation fee and automatically compute doctor_share.
      */
