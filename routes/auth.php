@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiRegisteredUserController;
 use App\Http\Controllers\Auth\ApiAuthenticatedSessionController;
 use App\Http\Controllers\Auth\ApiEmailVerificationController;
 use App\Http\Controllers\Auth\ApiPasswordResetLinkController;
@@ -12,7 +13,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
+Route::post('/register', [ApiRegisteredUserController::class, 'store'])
     ->middleware('api.guest')
     ->name('register');
 
@@ -38,7 +39,7 @@ Route::post('/email/verify', [ApiEmailVerificationController::class, 'verify'])
     ->name('verification.verify');
 
 
-Route::post('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
+Route::get('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum')
 
     ->name('logout');
