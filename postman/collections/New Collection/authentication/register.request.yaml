@@ -1,0 +1,49 @@
+$kind: http-request
+name: register
+url: http://127.0.0.1:8000/api/register
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: first_name
+      value: Mazen
+      description: ""
+      disabled: false
+    - type: text
+      key: last_name
+      value: Foudad
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: Mazen@gmail.com
+      description: ""
+      disabled: false
+    - type: text
+      key: password
+      value: "123456"
+      description: ""
+      disabled: false
+    - type: text
+      key: role
+      value: doctor
+      description: ""
+      disabled: false
+    - type: text
+      key: latitude
+      value: "35.12345"
+      description: ""
+      disabled: false
+    - type: text
+      key: longitude
+      value: "36.98765"
+      description: ""
+      disabled: false
+    - type: file
+      key: degree_file
+      src:
+        - /C:/Users/ASUS/Desktop/trash/598485896_122199225812290966_7475564829743833014_n.jpg
+      description: ""
+      disabled: false
+order: 1774895082849
