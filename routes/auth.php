@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ApiRegisteredUserController;
 use App\Http\Controllers\Auth\ApiAuthenticatedSessionController;
 use App\Http\Controllers\Auth\ApiEmailVerificationController;
+use App\Http\Controllers\Auth\ApiNewPasswordController;
 use App\Http\Controllers\Auth\ApiPasswordResetLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -25,7 +26,7 @@ Route::post('/forgot-password', [ApiPasswordResetLinkController::class, 'store']
     ->middleware('api.guest')
     ->name('password.email');
 
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
+Route::post('/reset-password', [ApiNewPasswordController::class, 'store'])
     ->middleware('api.guest')
 
     ->name('password.reset');
