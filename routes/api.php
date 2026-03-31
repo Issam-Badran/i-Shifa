@@ -21,4 +21,9 @@ Route::middleware(['auth:sanctum', 'isPatient'])->get('/patient/test', function 
 });
 
 
+Route::get('/test', function(){
+    return "ngrok is working";
+    });
+
+
 require __DIR__.'/auth.php';
