@@ -25,6 +25,8 @@ class ApiRegisteredUserController extends Controller
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
 
+            'specialization' => 'required_if:role,doctor|string|max:255',
+
             'degree_file' => 'required_if:role,doctor|mimes:pdf,jpg,jpeg,png|max:4096',
         ]);
 
@@ -57,7 +59,7 @@ class ApiRegisteredUserController extends Controller
 
             Doctor::create([
                 'user_id' => $user->id,
-                'specialization' => null, // doctor will fill later
+                'specialization' => $validated['specialization'],
                 'degree_file' => $degreePath,
                 'clinic_start_time' => null,
                 'clinic_end_time' => null,
@@ -66,7 +68,7 @@ class ApiRegisteredUserController extends Controller
                 'total_earnings' => 0,
                 'appointments_count' => 0,
                 'balance' => 0,
-                'status' => 'pending', // WAITING FOR ADMIN APPROVAL
+                'status' => 'pending',
             ]);
 
         } elseif ($validated['role'] === 'patient') {
