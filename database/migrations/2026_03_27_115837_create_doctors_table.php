@@ -16,7 +16,7 @@ return new class extends Migration
 
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-        $table->string('specialization')->nullable();
+        $table->string('specialization');
         $table->string('degree_file')->nullable();
 
         $table->time('clinic_start_time')->nullable();
