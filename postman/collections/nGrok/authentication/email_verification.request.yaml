@@ -1,0 +1,7 @@
+$kind: http-request
+name: email_verification
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/email/verification-notification
+method: POST
+headers:
+  Authorization: Bearer 8|0EZAV2wGkBbMH8wGrwO8OYgCVpW1Nyv5fsA9ejwu67636b0d
+order: 4474374909608955
