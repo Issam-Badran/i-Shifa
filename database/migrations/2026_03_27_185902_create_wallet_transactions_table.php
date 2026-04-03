@@ -25,7 +25,7 @@ return new class extends Migration
         // withdraw = money taken from patient
         // deposit = money added to doctor
         // topup = patient adds money to his wallet
-        $table->enum('type', ['withdraw', 'deposit', 'topup']);
+        $table->enum('type', ['withdraw', 'deposit', 'topup', 'platform_fee']);
 
         // Optional: link to appointment
         $table->foreignId('appointment_id')->nullable()->constrained('appointments')->onDelete('cascade');
