@@ -62,4 +62,19 @@ public function WalletTransaction ()
         $this->balance += $this->doctor_share;
         $this->save();
     }
+
+    public function deductPlatformFee(float $fee): void
+{
+    $this->balance -= $fee;
+    $this->save();
+}
+
+public function addDoctorShare(float $amount): void
+{
+    $this->balance += $amount;
+    $this->total_earnings += $amount;
+    $this->save();
+}
+
+
 }

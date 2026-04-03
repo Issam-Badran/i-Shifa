@@ -66,4 +66,10 @@ public function WalletTransaction ()
         $this->balance -= $amount;
         $this->save();
     }
+
+    public function payForAppointment(float $amount): void
+{
+    $this->deductBalance($amount);
+}
+
 }
