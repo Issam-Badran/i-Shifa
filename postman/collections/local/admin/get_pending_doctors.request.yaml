@@ -1,0 +1,8 @@
+$kind: http-request
+name: get_pending_doctors
+url: http://127.0.0.1:8000/api/admin/doctors/pending
+method: GET
+headers:
+  - key: Authorization
+    value: Bearer 5|xXIGUM55QLolX1jyxaTpPAmzc8uRPndKZF6cyTHj2b2ec4f2
+order: 1775077388036

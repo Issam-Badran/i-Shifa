@@ -1,0 +1,7 @@
+$kind: http-request
+name: logout
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/logout
+method: GET
+headers:
+  Authorization: Bearer 7|KtGgV4qsDiut1okch7VG5WR69RVVzAobLgEzOJtRdfcea134
+order: 4318243217640136
