@@ -66,19 +66,92 @@ public function cancel(Request $request, Appointment $appointment)
 {
     $user = $request->user();
 
-    if ($user->role === 'patient') {
-        $appointment->cancelByPatient();
-    }
-
-    if ($user->role === 'doctor') {
-        $appointment->cancelByDoctor();
-    }
+    $appointment->cancelByPatient();
 
     return response()->json([
         'status' => 'success',
         'message' => 'Appointment cancelled successfully'
     ]);
 }
+
+    /**
+     * Show ALL my appointments
+     */
+    public function index(Request $request)
+    {
+        $patient = $request->user()->patient;
+
+        $appointments = Appointment::with(['doctor.user'])
+            ->where('patient_id', $patient->id)
+            ->orderBy('appointment_datetime', 'desc')
+            ->get()
+            ->map(function ($appointment) {
+                return [
+                    'id' => $appointment->id,
+                    'doctor_name' => $appointment->doctor->user->first_name . ' ' . $appointment->doctor->user->last_name,
+                    'status' => $appointment->status,
+                    'appointment_datetime' => $appointment->appointment_datetime,
+                    'created_at' => $appointment->created_at,
+                ];
+            });
+
+        return response()->json([
+            'status' => 'success',
+            'appointments' => $appointments
+        ]);
+    }
+
+    /**
+     * Show last 3 MY appointments
+     */
+    public function latest(Request $request)
+    {
+        $patient = $request->user()->patient;
+
+        $appointments = Appointment::with(['doctor.user'])
+            ->where('patient_id', $patient->id)
+            ->orderBy('appointment_datetime', 'desc')
+            ->take(3)
+            ->get()
+            ->map(function ($appointment) {
+                return [
+                    'id' => $appointment->id,
+                    'doctor_name' => $appointment->doctor->user->first_name . ' ' . $appointment->doctor->user->last_name,
+                    'status' => $appointment->status,
+                    'appointment_datetime' => $appointment->appointment_datetime,
+                    'time_since_started' => Carbon::parse($appointment->appointment_datetime)->diffForHumans(),
+                ];
+            });
+
+        return response()->json([
+            'status' => 'success',
+            'latest_appointments' => $appointments
+        ]);
+    }
+
+    /**
+     * Show a single appointment
+     */
+    public function show(Request $request, Appointment $appointment)
+    {
+        $appointment->load(['doctor.user', 'patient.user']);
+
+        // Ensure this appointment belongs to the patient
+        if ($appointment->patient_id !== $request->user()->patient->id) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'appointment' => [
+                'id' => $appointment->id,
+                'doctor_name' => $appointment->doctor->user->first_name . ' ' . $appointment->doctor->user->last_name,
+                'status' => $appointment->status,
+                'appointment_datetime' => $appointment->appointment_datetime,
+                'created_at' => $appointment->created_at,
+            ]
+        ]);
+    }
 
 
 }
