@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
-class AppointmentController extends Controller
+class DoctorAppointmentController extends Controller
 {
     public function cancel(Request $request, Appointment $appointment)
     {

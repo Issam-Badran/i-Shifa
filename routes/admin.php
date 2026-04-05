@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
 use App\Http\Controllers\Admin\AdminDoctorController;
+use App\Http\Controllers\Admin\AdminAppointmentController;
+
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->prefix('admin')->group(function () {
 

@@ -1,0 +1,5 @@
+$kind: http-request
+name: show_all_appointments
+url: http://127.0.0.1:8000/api/admin/doctors/5/reject
+method: GET
+order: 4068734959593233

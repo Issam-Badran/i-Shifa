@@ -9,7 +9,7 @@ use App\Models\Patient;
 use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 
-class AppointmentController extends Controller
+class PatientAppointmentController extends Controller
 {
     public function book(Request $request)
 {

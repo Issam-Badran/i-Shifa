@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\Doctor\AppointmentController as DoctorAppointmentController;
+use App\Http\Controllers\Doctor\DoctorAppointmentController;
 
 Route::middleware(['auth:sanctum', 'isDoctor'])->prefix('doctor')->group(function () {
 

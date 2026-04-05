@@ -10,7 +10,7 @@ use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class AppointmentController extends Controller
+class AdminAppointmentController extends Controller
 {
   /**
      * Show ALL appointments (with doctor & patient names)
