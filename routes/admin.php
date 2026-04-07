@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminDoctorController;
 use App\Http\Controllers\Admin\AdminAppointmentController;
+use App\Http\Controllers\Admin\AdminStatsController;
+use App\Http\Controllers\Admin\AdminUsersController;
 
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->prefix('admin')->group(function () {
@@ -19,4 +21,19 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->prefix('admin')->group(function 
 
     // Show single appointment
     Route::get('/appointments/{appointment}', [AdminAppointmentController::class, 'show']);
+
+
+    Route::get('/stats', [AdminStatsController::class, 'index']);
+
+    // List all users
+        Route::get('/users', [AdminUsersController::class, 'index']);
+
+        // Ban user
+        Route::post('/users/{user}/ban', [AdminUsersController::class, 'ban']);
+
+        // Unban user
+        Route::post('/users/{user}/unban', [AdminUsersController::class, 'unban']);
+
+
+
 });
