@@ -9,9 +9,10 @@ use App\Http\Controllers\Admin\AdminUsersController;
 Route::middleware(['auth:sanctum', 'isAdmin'])->prefix('admin')->group(function () {
 
 
-    Route::get('/admin/doctors/pending', [AdminDoctorController::class, 'pending']);
-    Route::post('/admin/doctors/{id}/approve', [AdminDoctorController::class, 'approve']);
-    Route::post('/admin/doctors/{id}/reject', [AdminDoctorController::class, 'reject']);
+    Route::get('/doctors/join_requests', [AdminDoctorController::class, 'pending']);
+    Route::get('/doctors/latest_join_requests', [AdminDoctorController::class, 'latest']);
+    Route::post('/doctors/{id}/approve', [AdminDoctorController::class, 'approve']);
+    Route::post('/doctors/{id}/reject', [AdminDoctorController::class, 'reject']);
 
     // Show ALL appointments
     Route::get('/appointments', [AdminAppointmentController::class, 'index']);

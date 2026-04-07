@@ -10,7 +10,21 @@ class AdminDoctorController extends Controller
     public function pending()
     {
         $doctors = Doctor::where('status', 'pending')
-            ->with('user:id,first_name,last_name,email')
+            ->with('user:id,first_name,last_name,specialization,email')
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'doctors' => $doctors,
+        ]);
+    }
+
+    public function latest()
+    {
+        $doctors = Doctor::where('status', 'pending')
+            ->with('user:id,first_name,last_name,specialization,email')
+            ->orderBy('created_at', 'desc')
+            ->take(3)
             ->get();
 
         return response()->json([
