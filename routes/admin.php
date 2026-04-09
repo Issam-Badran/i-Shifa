@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDoctorController;
 use App\Http\Controllers\Admin\AdminAppointmentController;
+use App\Http\Controllers\Admin\AdminPaymentsController;
 use App\Http\Controllers\Admin\AdminStatsController;
 use App\Http\Controllers\Admin\AdminUsersController;
 
@@ -35,6 +36,6 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->prefix('admin')->group(function 
         // Unban user
         Route::post('/users/{user}/unban', [AdminUsersController::class, 'unban']);
 
-
+        Route::get('/payments', [AdminPaymentsController::class, 'index']);
 
 });
