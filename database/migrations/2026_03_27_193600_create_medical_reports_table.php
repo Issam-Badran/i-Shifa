@@ -19,6 +19,7 @@ return new class extends Migration
               ->constrained('appointments')
               ->onDelete('cascade');
 
+              $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
         // Encrypted fields
         $table->text('ai_report')->nullable();
         $table->text('doctor_report')->nullable();
