@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Patient\PatientAppointmentController;
+use App\Http\Controllers\Patient\PatientProfileController;
 use App\Http\Controllers\Patient\PatientStatsController;
 
 Route::middleware(['auth:sanctum', 'isPatient'])->prefix('patient')->group(function () {
@@ -22,4 +23,7 @@ Route::middleware(['auth:sanctum', 'isPatient'])->prefix('patient')->group(funct
 
     // stats
     Route::get('/dashboard', [PatientStatsController::class, 'index']);
+
+    Route::get('/profile', [PatientProfileController::class, 'show']);
+    Route::post('/profile', [PatientProfileController::class, 'update']);
 });

@@ -17,6 +17,9 @@ return new class extends Migration
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
         $table->decimal('balance', 12, 2)->default(0);
+        $table->integer('age')->default(0);
+        $table->integer('height')->default(0);
+        $table->integer('weight')->default(0);
 
         $table->unsignedInteger('appointments_count')->default(0);
         $table->unsignedInteger('cancellations_count')->default(0);
