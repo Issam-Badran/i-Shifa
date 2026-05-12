@@ -4,7 +4,7 @@ use App\Http\Controllers\Patient\PatientAppointmentController;
 use App\Http\Controllers\Patient\PatientProfileController;
 use App\Http\Controllers\Patient\PatientStatsController;
 
-Route::middleware(['auth:sanctum', 'isPatient'])->prefix('patient')->group(function () {
+Route::middleware(['auth:sanctum', 'isPatient', 'verified'])->prefix('patient')->group(function () {
 
     // Book appointment
     Route::post('/appointments', [PatientAppointmentController::class, 'book']);

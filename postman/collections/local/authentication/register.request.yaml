@@ -3,11 +3,18 @@ name: register
 url: http://127.0.0.1:8000/api/register
 method: POST
 body:
-  type: formdata
-  content:
-    - type: text
-      key: ""
-      value: ""
-      description: ""
-      disabled: true
+  type: json
+  content: "{\r
+
+    \  \"first_name\": \"mama\",\r
+
+    \  \"last_name\": \"moune\",\r
+
+    \  \"email\": \"mama@example.com\",\r
+
+    \  \"password\": \"123456\",\r
+
+    \  \"role\": \"patient\" \r
+
+    }\r\n"
 order: 1774895082849

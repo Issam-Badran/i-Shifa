@@ -1,0 +1,10 @@
+$kind: http-request
+name: verification_link
+url: http://127.0.0.1:8000/api/email/verify?expires=1778612295&hash=91bd26aeb61bf4d9549680ed6f228f73d18bf5a3&id=11&signature=745abb70415ff133029134b5fa13fef944b2f784089307243f37b0a835e346eb
+method: GET
+queryParams:
+  expires: "1778612295"
+  hash: 91bd26aeb61bf4d9549680ed6f228f73d18bf5a3
+  id: "11"
+  signature: 745abb70415ff133029134b5fa13fef944b2f784089307243f37b0a835e346eb
+order: 4489719620108751

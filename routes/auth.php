@@ -35,16 +35,14 @@ Route::post('/email/verification-notification', [ApiEmailVerificationController:
     ->middleware('auth:sanctum')
     ->name('verification.send');
 
-Route::post('/email/verify', [ApiEmailVerificationController::class, 'verify'])
-    ->middleware('auth:sanctum')
+Route::get('/email/verify', [ApiEmailVerificationController::class, 'verify'])
     ->name('verification.verify');
 
 
+
 Route::get('/logout', [ApiAuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth:sanctum')
+    ->middleware('auth:sanctum' , 'verified')
 
     ->name('logout');
 
     
-
-// I didn't test the verify and verification notification routes

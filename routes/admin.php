@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminStatsController;
 use App\Http\Controllers\Admin\AdminUsersController;
 
 
-Route::middleware(['auth:sanctum', 'isAdmin'])->prefix('admin')->group(function () {
+Route::middleware(['auth:sanctum', 'isAdmin' , 'verified'])->prefix('admin')->group(function () {
 
 
     Route::get('/doctors/join_requests', [AdminDoctorController::class, 'pending']);

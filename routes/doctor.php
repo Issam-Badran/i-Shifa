@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\Doctor\DoctorAppointmentController;
 
-Route::middleware(['auth:sanctum', 'isDoctor'])->prefix('doctor')->group(function () {
+Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->group(function () {
 
     // Show ALL my appointments
     Route::get('/appointments', [DoctorAppointmentController::class, 'index']);
