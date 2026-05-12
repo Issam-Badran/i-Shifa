@@ -3,10 +3,9 @@ name: show_single_appointment
 url: http://127.0.0.1:8000/api/admin/appointments/1
 method: GET
 headers:
-  - key: Authorization
-    value: Bearer 1|HY209DDh0u3ABs4xFOLkSYqkWlwgj9BfYh4NyjAW847e30d3
+  Authorization: Bearer 1|HY209DDh0u3ABs4xFOLkSYqkWlwgj9BfYh4NyjAW847e30d3
 queryParams:
   - key: ""
     value: ""
     disabled: true
-order: 18000
+order: 4064162475115869

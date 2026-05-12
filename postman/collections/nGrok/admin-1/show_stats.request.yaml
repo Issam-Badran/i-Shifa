@@ -4,4 +4,4 @@ url: http://127.0.0.1:8000/api/admin/stats
 method: GET
 headers:
   Authorization: Bearer 5|a8BNoYJ3SSGIOxUeiupKPnJKMmxw9hssHyoKILKlbb27f872
-order: 16000
+order: 8000

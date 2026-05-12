@@ -1,0 +1,20 @@
+$kind: http-request
+name: modify_patient_profile
+url: http://127.0.0.1:8000/api/patient/profile
+method: POST
+headers:
+  Authorization: Bearer 1|c4iPz4PJ0xruYjKiHupD8Bxo71SbtWzZzuquH18Qf02eca6b
+body:
+  type: json
+  content: "{\r
+
+    \  \"age\": 35,\r
+
+    \  \"height\": 175,\r
+
+    \  \"weight\": 75,\r
+
+    \  \"phone\": \"+966501234567\"\r
+
+    }"
+order: 667670747813706

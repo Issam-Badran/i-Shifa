@@ -1,6 +1,7 @@
 $kind: http-request
+name: reject_doctor
 url: http://127.0.0.1:8000/api/admin/doctors/5/reject
 method: GET
 headers:
   Authorization: Bearer 5|xXIGUM55QLolX1jyxaTpPAmzc8uRPndKZF6cyTHj2b2ec4f2
-order: 4259706828840566
+order: 4484427354894356

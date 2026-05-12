@@ -1,7 +1,7 @@
 $kind: http-request
-name: show_stats
-url: http://127.0.0.1:8000/api/admin/stats
-method: GET
+name: unban_user
+url: http://127.0.0.1:8000/api/admin/users/2/unban
+method: POST
 headers:
   Authorization: Bearer 5|a8BNoYJ3SSGIOxUeiupKPnJKMmxw9hssHyoKILKlbb27f872
-order: 16000
+order: 670520363198437

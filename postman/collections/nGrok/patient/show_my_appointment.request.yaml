@@ -1,0 +1,17 @@
+$kind: http-request
+name: show_my_appointment
+url: http://127.0.0.1:8000/api/patient/appointments/latest
+method: POST
+headers:
+  - key: Authorization
+    value: Bearer 2|1NgX2D3ex4irFrfSivr9s3PbJNayqjXX5J3GmcLW16cd21d3
+body:
+  type: json
+  content: "{\r
+
+    \  \"doctor_id\": 1,\r
+
+    \  \"appointment_datetime\": \"2026-04-06 14:00:00\"\r
+
+    }"
+order: 1000
