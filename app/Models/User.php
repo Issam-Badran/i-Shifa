@@ -56,6 +56,17 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    public function sendEmailVerificationNotification()
+{
+    $this->notify(new \App\Notifications\VerifyEmailNotification());
+}
+
+public function sendPasswordResetNotification($token)
+{
+    $this->notify(new \App\Notifications\ResetPasswordNotification($token));
+}
+
+
     public function doctor()
 {
     return $this->hasOne(Doctor::class);
