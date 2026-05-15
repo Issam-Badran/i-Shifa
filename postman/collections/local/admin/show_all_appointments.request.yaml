@@ -1,0 +1,7 @@
+$kind: http-request
+name: show_all_appointments
+url: http://127.0.0.1:8000/api/admin/appointments
+method: GET
+headers:
+  Authorization: Bearer 1|HY209DDh0u3ABs4xFOLkSYqkWlwgj9BfYh4NyjAW847e30d3
+order: 12000

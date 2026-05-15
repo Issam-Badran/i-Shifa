@@ -1,0 +1,7 @@
+$kind: http-request
+name: get_payments
+url: http://127.0.0.1:8000/api/admin/payments
+method: GET
+headers:
+  Authorization: Bearer 6|ux5Wta6rMLzVpRoUBipvyD87CFSrFeEsnGsR9ix5114b6220
+order: 6000
