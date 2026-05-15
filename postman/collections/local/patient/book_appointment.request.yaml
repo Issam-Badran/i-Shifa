@@ -4,4 +4,7 @@ url: http://127.0.0.1:8000/api/patient/appointments
 method: POST
 headers:
   Authorization: Bearer 2|1NgX2D3ex4irFrfSivr9s3PbJNayqjXX5J3GmcLW16cd21d3
+body:
+  type: json
+  content: ""
 order: 2000

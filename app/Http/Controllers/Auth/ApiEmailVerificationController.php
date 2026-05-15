@@ -29,7 +29,7 @@ public function verify(Request $request)
     }
     // 2. Already verified?
     if ($user->hasVerifiedEmail()) {
-        dd($request);
+        
         // Auto-login anyway
         $token = $user->createToken('auth_token')->plainTextToken;
 
