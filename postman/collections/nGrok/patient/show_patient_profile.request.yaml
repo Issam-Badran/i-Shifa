@@ -1,7 +1,0 @@
-$kind: http-request
-name: show_patient_profile
-url: http://127.0.0.1:8000/api/patient/profile
-method: GET
-headers:
-  Authorization: Bearer 1|c4iPz4PJ0xruYjKiHupD8Bxo71SbtWzZzuquH18Qf02eca6b
-order: 6167

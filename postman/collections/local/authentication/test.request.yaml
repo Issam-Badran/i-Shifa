@@ -1,5 +1,0 @@
-$kind: http-request
-name: test
-url: https://wolflike-merri-nugatory.ngrok-free.dev/api/test
-method: GET
-order: 4477192487310077

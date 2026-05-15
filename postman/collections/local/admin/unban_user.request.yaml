@@ -1,8 +1,0 @@
-$kind: http-request
-name: unban_user
-url: http://127.0.0.1:8000/api/admin/users/2/unban
-method: POST
-headers:
-  - key: Authorization
-    value: Bearer 5|a8BNoYJ3SSGIOxUeiupKPnJKMmxw9hssHyoKILKlbb27f872
-order: 24000
