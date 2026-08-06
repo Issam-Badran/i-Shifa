@@ -6,40 +6,36 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
-{
-    Schema::create('doctors', function (Blueprint $table) {
-        $table->id();
+    {
+        Schema::create('doctors', function (Blueprint $table) {
+            $table->id();
 
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-        $table->string('specialization');
-        $table->string('degree_file')->nullable();
+            // Basic info
+            $table->string('specialization');
+            $table->string('degree_file')->nullable();
 
-        $table->time('clinic_start_time')->nullable();
-        $table->time('clinic_end_time')->nullable();
+            // Single consultation fee
+            $table->decimal('consultation_fee', 10, 2)->default(0);
 
-        $table->decimal('consultation_fee', 10, 2)->default(0);
-        $table->decimal('doctor_share', 10, 2)->default(0);
-        $table->decimal('total_earnings', 12, 2)->default(0);
-        $table->unsignedInteger('appointments_count')->default(0);
-        $table->decimal('balance', 12, 2)->default(0);
+            // Earnings
+            $table->decimal('doctor_share', 10, 2)->default(0);
+            $table->decimal('total_earnings', 12, 2)->default(0);
+            $table->unsignedInteger('appointments_count')->default(0);
+            $table->decimal('balance', 12, 2)->default(0);
 
-        $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            // Availability
+            $table->boolean('is_available')->default(true);
 
-        $table->timestamps();
-    });
-}
+            // Approval status
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
 
+            $table->timestamps();
+        });
+    }
 
-
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('doctors');

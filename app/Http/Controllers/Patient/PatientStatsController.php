@@ -11,8 +11,8 @@ class PatientStatsController extends Controller
 {
     public function index(Request $request)
     {
-        
         $patient = $request->user()->patient;
+
         // ============================
         // 1. Total consultations
         // ============================
@@ -28,13 +28,21 @@ class PatientStatsController extends Controller
         // ============================
         $balance = $patient->balance;
 
+        // ============================
+        // 4. Upcoming appointments count
+        // ============================
+        $upcomingAppointments = Appointment::where('patient_id', $patient->id)
+            ->where('appointment_datetime', '>', now())
+            ->where('status', 'pending')
+            ->count();
 
         return response()->json([
             'status' => 'success',
             'dashboard' => [
-                'total_consultations' => $totalConsultations,
+                'total_consultations'   => $totalConsultations,
                 'medical_reports_count' => $medicalReportsCount,
-                'balance' => $balance,
+                'balance'               => $balance,
+                'upcoming_appointments' => $upcomingAppointments,
             ]
         ]);
     }

@@ -3,5 +3,5 @@ name: show_stats
 url: http://127.0.0.1:8000/api/patient/dashboard
 method: GET
 headers:
-  Authorization: Bearer 1|xF48Cmxus6r28JCTqpTw4s2gX331S3Rmjli5WBwf323be7c0
+  Authorization: Bearer 31|M9qwORW0s5DotS5tl9Jwx1TYI9gOIwg2vZeSUQUX07c4de92
 order: 7000

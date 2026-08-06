@@ -17,6 +17,12 @@ class Appointment extends Model
         'ai_report',
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);
@@ -28,15 +34,20 @@ class Appointment extends Model
     }
 
     public function walletTransactions()
-{
-    return $this->hasMany(WalletTransaction::class);
-}
+    {
+        return $this->hasMany(WalletTransaction::class);
+    }
 
-public function medicalReport()
-{
-    return $this->hasOne(MedicalReport::class);
-}
+    public function medicalReport()
+    {
+        return $this->hasOne(MedicalReport::class);
+    }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Business Logic
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Mark appointment as completed.
@@ -46,69 +57,56 @@ public function medicalReport()
         $this->status = 'completed';
         $this->save();
 
-        // Update doctor stats
+        $doctorShare = $this->doctor->consultation_fee * 0.90;
+        $platformFee = $this->doctor->consultation_fee * 0.10;
+
+        // Doctor stats
         $this->doctor->registerCompletedAppointment();
 
-        // Update patient stats
+        // Patient stats
         $this->patient->registerAppointment();
+
+        // Wallet transactions
+        $this->walletTransactions()->create([
+            'patient_id' => $this->patient_id,
+            'doctor_id' => $this->doctor_id,
+            'amount' => $platformFee,
+            'type' => 'platform_fee',
+        ]);
     }
 
     /**
-     * Cancel appointment.
+     * Cancel appointment by patient.
+     * Refund full consultation fee.
      */
-    public function cancel(): void
+    public function cancelByPatient(): void
     {
+        $refundAmount = $this->doctor->consultation_fee;
+
+        // Refund patient fully
+        $this->patient->addBalance($refundAmount);
+
+        // Update stats
+        $this->patient->registerCancellation();
+
         $this->status = 'cancelled';
         $this->save();
-
-        // Update patient cancellation count
-        $this->patient->registerCancellation();
     }
 
-    public function addTransaction($patientId, $doctorId, $amount, $type)
-{
-    $this->walletTransactions()->create([
-        'patient_id' => $patientId,
-        'doctor_id' => $doctorId,
-        'amount' => $amount,
-        'type' => $type,
-    ]);
-}
+    /**
+     * Cancel appointment by doctor.
+     * Refund full consultation fee to patient.
+     */
+    public function cancelByDoctor(): void
+    {
+        $refundAmount = $this->doctor->consultation_fee;
 
-public function cancelByPatient()
-{
-    $doctorShare = $this->doctor->doctor_share;
-    $platformFee = 0.5;
+        // Refund patient fully
+        $this->patient->addBalance($refundAmount);
 
-    // Refund only doctor share
-    $this->patient->addBalance($doctorShare);
+        // No penalty for doctor unless you want one
 
-    // Platform keeps 0.5$
-
-    $this->patient->registerCancellation();
-
-    $this->status = 'cancelled';
-    $this->save();
-}
-
-
-public function cancelByDoctor()
-{
-    $doctorShare = $this->doctor->doctor_share;
-    $platformFee = 0.5;
-
-    // Refund patient fully
-    $this->patient->addBalance($doctorShare + $platformFee);
-
-    // Doctor pays penalty
-    $this->doctor->deductPlatformFee($platformFee);
-
-    // Platform keeps 0.5$
-
-    $this->status = 'cancelled';
-    $this->save();
-}
-
-
-
+        $this->status = 'cancelled';
+        $this->save();
+    }
 }

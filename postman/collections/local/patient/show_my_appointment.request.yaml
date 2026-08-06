@@ -3,7 +3,7 @@ name: show_my_appointment
 url: http://127.0.0.1:8000/api/patient/appointments/latest
 method: POST
 headers:
-  Authorization: Bearer 2|1NgX2D3ex4irFrfSivr9s3PbJNayqjXX5J3GmcLW16cd21d3
+  Authorization: Bearer 27|7H5wK5GhLOcGB9QxTtgbEPzYrMjY9VOv9b6Isa1x80cc132c
 body:
   type: json
   content: "{\r

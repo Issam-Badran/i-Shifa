@@ -13,15 +13,20 @@ class Doctor extends Model
         'user_id',
         'specialization',
         'degree_file',
-        'clinic_start_time',
-        'clinic_end_time',
         'consultation_fee',
         'doctor_share',
         'total_earnings',
         'appointments_count',
         'balance',
+        'is_available',
         'status',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
 
     public function user()
     {
@@ -29,23 +34,36 @@ class Doctor extends Model
     }
 
     public function appointments()
-{
-    return $this->hasMany(Appointment::class);
-}
+    {
+        return $this->hasMany(Appointment::class);
+    }
 
-public function WalletTransaction ()
-{
-    return $this->hasMany(WalletTransaction::class);
-}
+    public function walletTransactions()
+    {
+        return $this->hasMany(WalletTransaction::class);
+    }
 
+    public function workingHours()
+    {
+        return $this->hasMany(DoctorWorkingHour::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Business Logic
+    |--------------------------------------------------------------------------
+    */
 
     /**
-     * Set consultation fee and automatically compute doctor_share.
+     * Set consultation fee and compute doctor share (90%).
      */
     public function setConsultationFee(float $fee): void
     {
         $this->consultation_fee = $fee;
-        $this->doctor_share = $fee / 2;
+
+        // Doctor receives 90%
+        $this->doctor_share = $fee * 0.90;
+
         $this->save();
     }
 
@@ -54,27 +72,24 @@ public function WalletTransaction ()
      * - increment appointments_count
      * - increase total_earnings
      * - increase balance
+     * - record platform fee (10%)
      */
     public function registerCompletedAppointment(): void
     {
+        $doctorShare = $this->consultation_fee * 0.90;
+        $platformFee = $this->consultation_fee * 0.10;
+
         $this->appointments_count += 1;
-        $this->total_earnings += $this->doctor_share;
-        $this->balance += $this->doctor_share;
+        $this->total_earnings += $doctorShare;
+        $this->balance += $doctorShare;
+
         $this->save();
+
+        // Record platform fee transaction
+        $this->walletTransactions()->create([
+            'doctor_id' => $this->id,
+            'amount' => $platformFee,
+            'type' => 'platform_fee',
+        ]);
     }
-
-    public function deductPlatformFee(float $fee): void
-{
-    $this->balance -= $fee;
-    $this->save();
-}
-
-public function addDoctorShare(float $amount): void
-{
-    $this->balance += $amount;
-    $this->total_earnings += $amount;
-    $this->save();
-}
-
-
 }

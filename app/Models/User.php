@@ -29,7 +29,9 @@ class User extends Authenticatable implements MustVerifyEmail
     'status',
     'latitude',
     'longitude',
+    'profile_image',
 ];
+
 
 
 

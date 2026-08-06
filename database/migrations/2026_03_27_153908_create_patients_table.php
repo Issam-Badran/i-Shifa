@@ -6,36 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
-{
-    Schema::create('patients', function (Blueprint $table) {
-        $table->id();
+    {
+        Schema::create('patients', function (Blueprint $table) {
+            $table->id();
 
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-        $table->decimal('balance', 12, 2)->default(0);
-        $table->integer('age')->default(0);
-        $table->integer('height')->default(0);
-        $table->integer('weight')->default(0);
+            // Financial
+            $table->decimal('balance', 12, 2)->default(0);
 
-        $table->unsignedInteger('appointments_count')->default(0);
-        $table->unsignedInteger('cancellations_count')->default(0);
+            // Optional health info
+            $table->integer('age')->default(0);
+            $table->integer('height')->default(0);
+            $table->integer('weight')->default(0);
 
-        $table->timestamps();
-    });
-}
+            // Stats
+            $table->unsignedInteger('appointments_count')->default(0);
+            $table->unsignedInteger('cancellations_count')->default(0);
 
+            $table->timestamps();
+        });
+    }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('patients');
     }
-
-    
 };

@@ -12,9 +12,18 @@ class Patient extends Model
     protected $fillable = [
         'user_id',
         'balance',
+        'age',
+        'height',
+        'weight',
         'appointments_count',
         'cancellations_count',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
 
     public function user()
     {
@@ -22,45 +31,39 @@ class Patient extends Model
     }
 
     public function appointments()
-{
-    return $this->hasMany(Appointment::class);
-}
+    {
+        return $this->hasMany(Appointment::class);
+    }
 
-public function WalletTransaction ()
-{
-    return $this->hasMany(WalletTransaction::class);
-}
+    public function walletTransactions()
+    {
+        return $this->hasMany(WalletTransaction::class);
+    }
 
-    /**
-     * Register a successful appointment.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Business Logic
+    |--------------------------------------------------------------------------
+    */
+
     public function registerAppointment(): void
     {
         $this->appointments_count += 1;
         $this->save();
     }
 
-    /**
-     * Register a cancellation.
-     */
     public function registerCancellation(): void
     {
         $this->cancellations_count += 1;
         $this->save();
     }
 
-    /**
-     * Add money to patient balance.
-     */
     public function addBalance(float $amount): void
     {
         $this->balance += $amount;
         $this->save();
     }
 
-    /**
-     * Deduct money from patient balance.
-     */
     public function deductBalance(float $amount): void
     {
         $this->balance -= $amount;
@@ -68,8 +71,7 @@ public function WalletTransaction ()
     }
 
     public function payForAppointment(float $amount): void
-{
-    $this->deductBalance($amount);
-}
-
+    {
+        $this->deductBalance($amount);
+    }
 }
