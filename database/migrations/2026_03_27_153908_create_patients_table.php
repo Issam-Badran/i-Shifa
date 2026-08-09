@@ -12,9 +12,11 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            
+            $table->string('phone')->nullable();
+            $table->string('email')->unique();
 
-            // Financial
-            $table->decimal('balance', 12, 2)->default(0);
+            
 
             // Optional health info
             $table->integer('age')->default(0);

@@ -4,24 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DoctorWorkingHour extends Model
+class DoctorWorkingDay extends Model
 {
     protected $fillable = [
         'doctor_id',
         'day_of_week',
-        'start_time',
-        'end_time',
-        'is_active',
+        'is_open',
     ];
 
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
     }
-
-    public function workingHours()
-{
-    return $this->hasMany(DoctorWorkingHour::class);
-}
-
 }

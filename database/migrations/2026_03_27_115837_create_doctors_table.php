@@ -16,6 +16,8 @@ return new class extends Migration
             // Basic info
             $table->string('specialization');
             $table->string('degree_file')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->unique();
 
             // Single consultation fee
             $table->decimal('consultation_fee', 10, 2)->default(0);
@@ -24,7 +26,7 @@ return new class extends Migration
             $table->decimal('doctor_share', 10, 2)->default(0);
             $table->decimal('total_earnings', 12, 2)->default(0);
             $table->unsignedInteger('appointments_count')->default(0);
-            $table->decimal('balance', 12, 2)->default(0);
+            
 
             // Availability
             $table->boolean('is_available')->default(true);

@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class PatientProfileController extends Controller
 {
-    /**
-     * Show patient profile
-     */
     public function show(Request $request)
     {
         $user = $request->user();
@@ -23,16 +20,13 @@ class PatientProfileController extends Controller
                 'age' => $patient->age,
                 'height' => $patient->height,
                 'weight' => $patient->weight,
-                'phone' => $user->phone,
-                'email' => $user->email,
+                'phone' => $patient->phone,
+                'email' => $patient->email, // communication email
                 'balance' => $patient->balance,
             ]
         ]);
     }
 
-    /**
-     * Update patient profile
-     */
     public function update(Request $request)
     {
         $request->validate([
@@ -42,6 +36,7 @@ class PatientProfileController extends Controller
             'height' => 'nullable|integer|min:0|max:300',
             'weight' => 'nullable|integer|min:0|max:500',
             'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
         ]);
 
         $user = $request->user();
@@ -50,13 +45,15 @@ class PatientProfileController extends Controller
         // Update user fields
         if ($request->filled('first_name')) $user->first_name = $request->first_name;
         if ($request->filled('last_name')) $user->last_name = $request->last_name;
-        if ($request->filled('phone')) $user->phone = $request->phone;
         $user->save();
 
         // Update patient fields
         if ($request->filled('age')) $patient->age = $request->age;
         if ($request->filled('height')) $patient->height = $request->height;
         if ($request->filled('weight')) $patient->weight = $request->weight;
+        if ($request->filled('phone')) $patient->phone = $request->phone;
+        if ($request->filled('email')) $patient->email = $request->email;
+
         $patient->save();
 
         return response()->json([

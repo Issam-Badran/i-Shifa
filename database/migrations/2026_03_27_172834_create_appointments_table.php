@@ -6,36 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
-{
-    Schema::create('appointments', function (Blueprint $table) {
-        $table->id();
+    {
+        Schema::create('appointments', function (Blueprint $table) {
+            $table->id();
 
-        // Foreign keys
-        $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
-        $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
 
-        // Appointment date & time
-        $table->dateTime('appointment_datetime');
+            // Link to the chosen time slot
+            $table->foreignId('time_slot_id')->constrained('doctor_time_slots')->onDelete('cascade');
 
-        // Status: pending, cancelled, completed
-        $table->enum('status', ['pending', 'cancelled', 'completed'])->default('pending');
+            $table->enum('status', ['pending', 'cancelled', 'completed'])->default('pending');
 
-        // AI report (nullable)
-        $table->text('ai_report')->nullable();
+            $table->text('ai_report')->nullable();
 
-        $table->timestamps();
-    });
-}
+            $table->timestamps();
+        });
+    }
 
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('appointments');
     }

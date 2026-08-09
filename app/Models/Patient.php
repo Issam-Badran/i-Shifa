@@ -11,7 +11,8 @@ class Patient extends Model
 
     protected $fillable = [
         'user_id',
-        'balance',
+        'phone',
+        'email',
         'age',
         'height',
         'weight',
@@ -35,10 +36,7 @@ class Patient extends Model
         return $this->hasMany(Appointment::class);
     }
 
-    public function walletTransactions()
-    {
-        return $this->hasMany(WalletTransaction::class);
-    }
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -58,20 +56,5 @@ class Patient extends Model
         $this->save();
     }
 
-    public function addBalance(float $amount): void
-    {
-        $this->balance += $amount;
-        $this->save();
-    }
-
-    public function deductBalance(float $amount): void
-    {
-        $this->balance -= $amount;
-        $this->save();
-    }
-
-    public function payForAppointment(float $amount): void
-    {
-        $this->deductBalance($amount);
-    }
+  
 }

@@ -12,9 +12,6 @@ Route::middleware(['auth:sanctum', 'isPatient', 'verified'])->prefix('patient')-
     // Show ALL my appointments
     Route::get('/appointments', [PatientAppointmentController::class, 'index']);
 
-    // Show last 3 of MY appointments
-    Route::get('/appointments/latest', [PatientAppointmentController::class, 'latest']);
-
     // Show single appointment
     Route::get('/appointments/{appointment}', [PatientAppointmentController::class, 'show']);
 

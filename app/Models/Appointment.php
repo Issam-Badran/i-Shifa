@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+
 class Appointment extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'patient_id',
         'doctor_id',
-        'appointment_datetime',
+        'time_slot_id',
         'status',
         'ai_report',
     ];
@@ -33,10 +32,11 @@ class Appointment extends Model
         return $this->belongsTo(Doctor::class);
     }
 
-    public function walletTransactions()
+    public function timeSlot()
     {
-        return $this->hasMany(WalletTransaction::class);
+        return $this->belongsTo(DoctorTimeSlot::class);
     }
+
 
     public function medicalReport()
     {
@@ -57,22 +57,11 @@ class Appointment extends Model
         $this->status = 'completed';
         $this->save();
 
-        $doctorShare = $this->doctor->consultation_fee * 0.90;
-        $platformFee = $this->doctor->consultation_fee * 0.10;
-
         // Doctor stats
         $this->doctor->registerCompletedAppointment();
 
         // Patient stats
         $this->patient->registerAppointment();
-
-        // Wallet transactions
-        $this->walletTransactions()->create([
-            'patient_id' => $this->patient_id,
-            'doctor_id' => $this->doctor_id,
-            'amount' => $platformFee,
-            'type' => 'platform_fee',
-        ]);
     }
 
     /**
@@ -81,11 +70,8 @@ class Appointment extends Model
      */
     public function cancelByPatient(): void
     {
-        $refundAmount = $this->doctor->consultation_fee;
-
-        // Refund patient fully
-        $this->patient->addBalance($refundAmount);
-
+  
+    
         // Update stats
         $this->patient->registerCancellation();
 
@@ -99,12 +85,6 @@ class Appointment extends Model
      */
     public function cancelByDoctor(): void
     {
-        $refundAmount = $this->doctor->consultation_fee;
-
-        // Refund patient fully
-        $this->patient->addBalance($refundAmount);
-
-        // No penalty for doctor unless you want one
 
         $this->status = 'cancelled';
         $this->save();
