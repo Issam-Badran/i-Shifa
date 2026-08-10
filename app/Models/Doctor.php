@@ -14,10 +14,9 @@ class Doctor extends Model
         'specialization',
         'degree_file',
         'phone',
-        'email',
         'appointments_count',
         
-        'is_available',
+        // 'is_available',
         'status',
     ];
 

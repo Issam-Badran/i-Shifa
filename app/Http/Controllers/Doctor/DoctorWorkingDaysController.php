@@ -15,6 +15,7 @@ class DoctorWorkingDaysController extends Controller
     {
         $doctor = $request->user()->doctor;
 
+
         $days = DoctorWorkingDay::where('doctor_id', $doctor->id)
             ->orderBy('day_of_week')
             ->get();
@@ -30,6 +31,8 @@ class DoctorWorkingDaysController extends Controller
      */
     public function update(Request $request, $dayId)
     {
+
+        // dd($request);
         $request->validate([
             'is_open' => 'required|boolean',
         ]);
@@ -50,10 +53,6 @@ class DoctorWorkingDaysController extends Controller
             'day' => $day
         ]);
     }
-
-    /**
-     * Initialize working days (run once when doctor registers)
-     */
 
     
 }

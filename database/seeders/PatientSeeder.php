@@ -17,7 +17,6 @@ public function run(): void
 {
     Patient::create([
         'user_id' => 3, // patient user
-        'balance' => 50000,
         'appointments_count' => 0,
         'cancellations_count' => 0,
     ]);

@@ -21,8 +21,7 @@ class PatientProfileController extends Controller
                 'height' => $patient->height,
                 'weight' => $patient->weight,
                 'phone' => $patient->phone,
-                'email' => $patient->email, // communication email
-                'balance' => $patient->balance,
+                'email' => $user->email,
             ]
         ]);
     }
@@ -45,6 +44,7 @@ class PatientProfileController extends Controller
         // Update user fields
         if ($request->filled('first_name')) $user->first_name = $request->first_name;
         if ($request->filled('last_name')) $user->last_name = $request->last_name;
+        if ($request->filled('email')) $user->email = $request->email;
         $user->save();
 
         // Update patient fields
@@ -52,7 +52,6 @@ class PatientProfileController extends Controller
         if ($request->filled('height')) $patient->height = $request->height;
         if ($request->filled('weight')) $patient->weight = $request->weight;
         if ($request->filled('phone')) $patient->phone = $request->phone;
-        if ($request->filled('email')) $patient->email = $request->email;
 
         $patient->save();
 

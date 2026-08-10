@@ -3,5 +3,5 @@ name: logout
 url: http://127.0.0.1:8000/api/logout
 method: GET
 headers:
-  Authorization: Bearer 7|KtGgV4qsDiut1okch7VG5WR69RVVzAobLgEzOJtRdfcea134
-order: 4503596856946929
+  Authorization: Bearer 2|vKAJ0EiITq8iuRMEWmygzoRspIbVDzcBlmkZdVcGac8e0c37
+order: 5000

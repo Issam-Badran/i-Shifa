@@ -15,13 +15,13 @@ class AppointmentSeeder extends Seeder
 
 public function run(): void
 {
-    Appointment::create([
-        'patient_id' => 1,
-        'doctor_id' => 1,
-        'appointment_datetime' => now()->addDay(),
-        'status' => 'pending',
-        'ai_report' => null,
-    ]);
+    // Appointment::create([
+    //     'patient_id' => 1,
+    //     'doctor_id' => 1,
+    //     'appointment_datetime' => now()->addDay(),
+    //     'status' => 'pending',
+    //     'ai_report' => null,
+    // ]);
 }
 
 }

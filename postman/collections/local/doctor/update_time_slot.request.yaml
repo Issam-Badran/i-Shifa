@@ -1,0 +1,9 @@
+$kind: http-request
+url: http://127.0.0.1:8000/api/doctor/working-days/1
+method: POST
+headers:
+  Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
+body:
+  type: json
+  content: "{\r\n  \"is_open\": true\r\n}\r\n"
+order: 8944

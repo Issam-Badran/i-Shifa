@@ -1,0 +1,18 @@
+$kind: http-request
+name: add_time_slot
+url: http://127.0.0.1:8000/api/doctor/time-slots
+method: POST
+headers:
+  Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
+body:
+  type: json
+  content: "{\r
+
+    \  \"day_of_week\": 1,\r
+
+    \  \"start_time\": \"09:15\",\r
+
+    \  \"end_time\": \"09:45\"\r
+
+    }\r\n"
+order: 9000

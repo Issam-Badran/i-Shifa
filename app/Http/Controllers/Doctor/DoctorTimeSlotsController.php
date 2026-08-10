@@ -11,8 +11,12 @@ class DoctorTimeSlotsController extends Controller
     /**
      * List all time slots for the doctor
      */
+
+
+    
     public function index(Request $request)
     {
+        
         $doctor = $request->user()->doctor;
 
         $slots = DoctorTimeSlot::where('doctor_id', $doctor->id)

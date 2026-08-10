@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,14 +18,13 @@ return new class extends Migration
             $table->string('specialization');
             $table->string('degree_file')->nullable();
             $table->string('phone')->nullable();
-            $table->string('email')->unique();
 
 
             $table->unsignedInteger('appointments_count')->default(0);
             
 
             // Availability
-            $table->boolean('is_available')->default(true);
+            // $table->boolean('is_available')->default(true);
 
             // Approval status
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
