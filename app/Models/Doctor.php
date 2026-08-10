@@ -15,9 +15,6 @@ class Doctor extends Model
         'degree_file',
         'phone',
         'email',
-        'consultation_fee',
-        'doctor_share',
-        'total_earnings',
         'appointments_count',
         
         'is_available',
@@ -29,6 +26,22 @@ class Doctor extends Model
     | Relationships
     |--------------------------------------------------------------------------
     */
+
+
+    protected static function booted()
+{
+    static::created(function ($doctor) {
+        // Create 7 days (Saturday → Friday)
+        for ($i = 0; $i < 7; $i++) {
+            \App\Models\DoctorWorkingDay::create([
+                'doctor_id'   => $doctor->id,
+                'day_of_week' => $i,
+                'is_open'     => false,
+            ]);
+        }
+    });
+}
+
 
     public function user()
     {

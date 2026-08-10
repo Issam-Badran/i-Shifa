@@ -19,12 +19,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->unique();
 
-            // Single consultation fee
-            $table->decimal('consultation_fee', 10, 2)->default(0);
 
-            // Earnings
-            $table->decimal('doctor_share', 10, 2)->default(0);
-            $table->decimal('total_earnings', 12, 2)->default(0);
             $table->unsignedInteger('appointments_count')->default(0);
             
 

@@ -8,19 +8,8 @@ class DoctorTimeSlot extends Model
 {
     protected $fillable = [
         'doctor_id',
-        'date',
+        'day_of_week',
         'start_time',
-        'is_available',
-        'appointment_id',
+        'end_time',
     ];
-
-    public function doctor()
-    {
-        return $this->belongsTo(Doctor::class);
-    }
-
-    public function appointment()
-    {
-        return $this->belongsTo(Appointment::class);
-    }
 }

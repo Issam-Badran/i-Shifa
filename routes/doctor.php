@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\Doctor\DoctorAppointmentController;
+use App\Http\Controllers\Doctor\DoctorTimeSlotsController;
+use App\Http\Controllers\Doctor\DoctorWorkingDaysController;
 
 Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->group(function () {
 
@@ -20,4 +22,14 @@ Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->g
 
     // Mark appointment completed
     Route::post('/appointments/{appointment}/complete', [DoctorAppointmentController::class, 'complete']);
+
+
+    Route::get('/doctor/working-days', [DoctorWorkingDaysController::class, 'index']);
+    Route::put('/doctor/working-days/{dayId}', [DoctorWorkingDaysController::class, 'update']);
+
+    Route::get('/doctor/time-slots', [DoctorTimeSlotsController::class, 'index']);
+    Route::post('/doctor/time-slots', [DoctorTimeSlotsController::class, 'store']);
+    Route::put('/doctor/time-slots/{id}', [DoctorTimeSlotsController::class, 'update']);
+    Route::delete('/doctor/time-slots/{id}', [DoctorTimeSlotsController::class, 'destroy']);
+
 });

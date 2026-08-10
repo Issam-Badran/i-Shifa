@@ -10,23 +10,15 @@ return new class extends Migration
     {
         Schema::create('doctor_time_slots', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
 
-            // The actual calendar date of the slot
-            $table->date('date');
-
-            // Slot start time (30-minute fixed slot)
+            $table->unsignedTinyInteger('day_of_week'); // 0–6
             $table->time('start_time');
-
-            // Whether the slot is available
-            $table->boolean('is_available')->default(true);
-
-            // If booked, link to appointment
-            $table->foreignId('appointment_id')->nullable()->constrained('appointments')->onDelete('cascade');
+            $table->time('end_time');
 
             $table->timestamps();
         });
+
     }
 
     public function down()

@@ -12,11 +12,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
 
-            // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+            // 0 = Saturday, 1 = Sunday, ... 6 = Friday
             $table->unsignedTinyInteger('day_of_week');
 
             // Whether the doctor works on this day
-            $table->boolean('is_open')->default(true);
+            $table->boolean('is_open')->default(false);
 
             $table->timestamps();
         });
