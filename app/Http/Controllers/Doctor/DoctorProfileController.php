@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Http\Controllers\Doctor;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class DoctorProfileController extends Controller
+{
+
+    public function show(Request $request)
+    {
+        $doctor = $request->user()->doctor;
+        $user = $request->user();
+
+        return response()->json([
+            'status' => 'success',
+            'profile' => [
+                // Identity
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'phone' => $doctor->phone,
+
+                // Professional
+                'specialization' => $doctor->specialization,
+                'sub_specialization' => $doctor->sub_specialization,
+                'experience_years' => $doctor->experience_years,
+                'languages' => $doctor->languages,
+                'license_number' => $doctor->license_number,
+                'degree' => $doctor->degree,
+                'university' => $doctor->university,
+                'bio' => $doctor->bio,
+
+                // Stats
+                'appointments_count' => $doctor->appointments_count,
+            ]
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $doctor = $request->user()->doctor;
+        $user = $request->user();
+
+        $validated = $request->validate([
+            'first_name' => 'string|nullable',
+            'last_name' => 'string|nullable',
+            'phone' => 'string|nullable',
+
+            'specialization' => 'string|nullable',
+            'sub_specialization' => 'string|nullable',
+            'experience_years' => 'integer|nullable',
+            'languages' => 'string|nullable',
+            'license_number' => 'string|nullable',
+            'degree' => 'string|nullable',
+            'university' => 'string|nullable',
+            'bio' => 'string|nullable',
+        ]);
+
+        // Update user fields
+        if (isset($validated['first_name'])) $user->first_name = $validated['first_name'];
+        if (isset($validated['last_name'])) $user->last_name = $validated['last_name'];
+        $user->save();
+
+        // Update doctor fields
+        $doctor->fill($validated);
+        $doctor->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Profile updated successfully.'
+        ]);
+    }
+
+}

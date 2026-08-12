@@ -15,6 +15,8 @@ class Patient extends Model
         'age',
         'height',
         'weight',
+        'blood_type',
+        'gender',
         'appointments_count',
         'cancellations_count',
     ];

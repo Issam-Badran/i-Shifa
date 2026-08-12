@@ -11,14 +11,29 @@ class Doctor extends Model
 
     protected $fillable = [
         'user_id',
+
+        // Basic info
         'specialization',
-        'degree_file',
+        'sub_specialization',
+        'experience_years',
+        'languages',
         'phone',
-        'appointments_count',
         
-        // 'is_available',
+        // Professional info
+        'license_number',
+        'degree',
+        'university',
+        'bio',
+        'degree_file',
+
+        // Stats
+        'appointments_count',
+
+
+        // Approval status
         'status',
     ];
+
 
     /*
     |--------------------------------------------------------------------------

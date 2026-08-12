@@ -10,9 +10,9 @@ body:
 
     \  \"day_of_week\": 1,\r
 
-    \  \"start_time\": \"09:15\",\r
+    \  \"start_time\": \"12:15\",\r
 
-    \  \"end_time\": \"09:45\"\r
+    \  \"end_time\": \"12:45\"\r
 
     }\r\n"
-order: 9000
+order: 13000

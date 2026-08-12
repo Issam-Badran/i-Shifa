@@ -1,7 +1,0 @@
-$kind: http-request
-name: accept_appointment
-url: http://127.0.0.1:8000/api/doctor/appointments/2/accept
-method: POST
-headers:
-  Authorization: Bearer 4|VlAjJMU7OviGsD6Lh8XnSgTSfD5pWfqrQjMgSC30350ec7d3
-order: 4000
