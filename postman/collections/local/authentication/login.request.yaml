@@ -6,9 +6,9 @@ body:
   type: json
   content: "{\r
 
-    \  \"email\": \"majd@example.com\",\r
+    \  \"email\": \"admin@example.com\",\r
 
-    \  \"password\": \"newpassword1234\"\r
+    \  \"password\": \"password\"\r
 
     }\r\n"
 order: 6000

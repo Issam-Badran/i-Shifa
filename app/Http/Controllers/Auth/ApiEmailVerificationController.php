@@ -10,6 +10,7 @@ class ApiEmailVerificationController extends Controller
 {
     public function send(Request $request)
     {
+        
         if ($request->user()->hasVerifiedEmail()) {
             return response()->json(['message' => 'Email already verified'], 400);
         }

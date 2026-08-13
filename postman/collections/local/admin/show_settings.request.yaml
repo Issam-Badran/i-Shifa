@@ -1,7 +1,7 @@
 $kind: http-request
-name: show_stats
-url: http://127.0.0.1:8000/api/admin/stats
+name: show_settings
+url: http://127.0.0.1:8000/api/admin/settings
 method: GET
 headers:
   Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
-order: 1000
+order: 7193

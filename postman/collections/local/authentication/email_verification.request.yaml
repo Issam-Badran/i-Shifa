@@ -1,7 +1,7 @@
 $kind: http-request
 name: email_verification
-url: http://127.0.0.1:8000/api/verification-notification
+url: http://127.0.0.1:8000/api/email/verification-notification
 method: POST
 headers:
-  Authorization: Bearer 8|0EZAV2wGkBbMH8wGrwO8OYgCVpW1Nyv5fsA9ejwu67636b0d
+  Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
 order: 3000

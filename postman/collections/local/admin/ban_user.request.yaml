@@ -1,7 +1,7 @@
 $kind: http-request
 name: ban_user
-url: http://127.0.0.1:8000/api/admin/users/2/ban
+url: http://127.0.0.1:8000/api/admin/users/6/ban
 method: POST
 headers:
-  Authorization: Bearer 5|a8BNoYJ3SSGIOxUeiupKPnJKMmxw9hssHyoKILKlbb27f872
-order: 22000
+  Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
+order: 3000

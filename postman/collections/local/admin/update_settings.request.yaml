@@ -1,0 +1,14 @@
+$kind: http-request
+name: update_settings
+url: http://127.0.0.1:8000/api/admin/settings
+method: PUT
+headers:
+  Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
+body:
+  type: json
+  content: "{\r
+
+    \  \"site_name\": \"iShifa\"\r
+
+    }\r\n"
+order: 9000

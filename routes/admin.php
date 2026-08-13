@@ -1,19 +1,39 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminDoctorController;
+use App\Http\Controllers\Admin\AdminJoinRequestsController ;
 use App\Http\Controllers\Admin\AdminAppointmentController;
 use App\Http\Controllers\Admin\AdminPaymentsController;
 use App\Http\Controllers\Admin\AdminStatsController;
 use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\PlatformSettingsController;
 
 
 Route::middleware(['auth:sanctum', 'isAdmin' , 'verified'])->prefix('admin')->group(function () {
 
 
-    Route::get('/doctors/join_requests', [AdminDoctorController::class, 'pending']);
-    Route::get('/doctors/latest_join_requests', [AdminDoctorController::class, 'latest']);
-    Route::post('/doctors/{id}/approve', [AdminDoctorController::class, 'approve']);
-    Route::post('/doctors/{id}/reject', [AdminDoctorController::class, 'reject']);
+
+    Route::get('/stats', [AdminStatsController::class, 'stats']);
+    Route::get('/users', [AdminUsersController::class, 'index']);
+    // Ban user
+    Route::post('/users/{user}/ban', [AdminUsersController::class, 'ban']);
+
+    // Unban user
+    Route::post('/users/{user}/unban', [AdminUsersController::class, 'unban']);
+
+    Route::get('/join-requests', [AdminJoinRequestsController::class, 'index']);
+    Route::post('/join-requests/{id}/approve', [AdminJoinRequestsController::class, 'approve']);
+    Route::post('/join-requests/{id}/reject', [AdminJoinRequestsController::class, 'reject']);
+    Route::get('/join-requests/{id}', [AdminJoinRequestsController::class, 'show']);
+
+    Route::get('/settings', [PlatformSettingsController::class, 'show']);
+    Route::put('/settings', [PlatformSettingsController::class, 'update']);
+
+
+
+
+
+    Route::get('/doctors/join_requests', [AdminJoinRequestsController ::class, 'pending']);
+    Route::get('/doctors/latest_join_requests', [AdminJoinRequestsController ::class, 'latest']);
 
     // Show ALL appointments
     Route::get('/appointments', [AdminAppointmentController::class, 'index']);
@@ -25,17 +45,11 @@ Route::middleware(['auth:sanctum', 'isAdmin' , 'verified'])->prefix('admin')->gr
     Route::get('/appointments/{appointment}', [AdminAppointmentController::class, 'show']);
 
 
-    Route::get('/stats', [AdminStatsController::class, 'index']);
+    // Route::get('/stats', [AdminStatsController::class, 'index']);
 
     // List all users
-        Route::get('/users', [AdminUsersController::class, 'index']);
 
-        // Ban user
-        Route::post('/users/{user}/ban', [AdminUsersController::class, 'ban']);
 
-        // Unban user
-        Route::post('/users/{user}/unban', [AdminUsersController::class, 'unban']);
-
-        Route::get('/payments', [AdminPaymentsController::class, 'index']);
+        
 
 });

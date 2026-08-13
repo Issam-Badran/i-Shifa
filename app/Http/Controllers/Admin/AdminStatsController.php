@@ -1,91 +1,70 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Appointment;
-use App\Models\Doctor;
 use App\Models\User;
-use App\Models\WalletTransaction;
+use App\Models\Doctor;
+use App\Models\Appointment;
 use Carbon\Carbon;
 
 class AdminStatsController extends Controller
 {
-    public function index()
+    public function stats()
     {
-        $now = Carbon::now();
+        $today = Carbon::today();
 
-        // ============================
-        // 1. Monthly Revenue
-        // ============================
-        $currentRevenue = WalletTransaction::where('type', 'platform_fee')
-            ->whereMonth('created_at', $now->month)
-            ->sum('amount');
-
-        $previousRevenue = WalletTransaction::where('type', 'platform_fee')
-            ->whereMonth('created_at', $now->copy()->subMonth()->month)
-            ->sum('amount');
-
-        $revenueGrowth = (($currentRevenue - $previousRevenue) / max($previousRevenue, 1)) * 100;
-
-        // ============================
-        // 2. appointmetns Today
-        // ============================
-        $appointmetnsToday = Appointment::whereDate('created_at', Carbon::today())->count();
-        $appointmetnsYesterday = Appointment::whereDate('created_at', Carbon::yesterday())->count();
-
-        $appointmetnsGrowth = (($appointmetnsToday - $appointmetnsYesterday) / max($appointmetnsYesterday, 1)) * 100;
-
-        // ============================
-        // 3. New Doctors Approved This Month
-        // ============================
-
-
-        $newDoctorsThisMonth = Doctor::where('status', 'approved')
-            ->whereMonth('created_at', $now->month)
+        // Consultations happening today (based on appointment date)
+        $consultationsToday = Appointment::whereDate('date', $today)
+            ->whereIn('status', ['booked', 'completed'])
             ->count();
 
+        // Active doctors = doctors with at least 1 appointment in last 30 days
+        $activeDoctors = Doctor::whereHas('appointments', function ($q) {
+            $q->where('date', '>=', Carbon::now()->subDays(30));
+        })->count();
 
-        // ============================
-        // 4. Total Active Users Growth
-        // ============================
-        $activeUsersThisMonth = User::where('status', 'active')
-            ->whereMonth('created_at', $now->month)
-            ->count();
+        // Total users
+        $totalUsers = User::count();
 
-        $activeUsersLastMonth = User::where('status', 'active')
-            ->whereMonth('created_at', $now->copy()->subMonth()->month)
-            ->count();
+        // Latest consultations (limit 3)
+        $latestConsultations = Appointment::with(['doctor.user', 'patient.user'])
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get()
+            ->map(function ($appt) {
+                return [
+                    'patient_name' => $appt->patient->user->first_name . ' ' . $appt->patient->user->last_name,
+                    'doctor_name'  => 'د. ' . $appt->doctor->user->first_name . ' ' . $appt->doctor->user->last_name,
+                    'time_ago' => $appt->created_at? $appt->created_at->diffForHumans(): 'غير معروف',
 
-        $userGrowth = (($activeUsersThisMonth - $activeUsersLastMonth) / max($activeUsersLastMonth, 1)) * 100;
+                    'status'       => $appt->status,
+                ];
+            });
 
-        // ============================
-        // Final Response
-        // ============================
+        // Latest join requests = doctors with status = pending
+        $latestJoinRequests = Doctor::with('user')
+            ->where('status', 'pending')
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get()
+            ->map(function ($doc) {
+                return [
+                    'doctor_name' => 'د. ' . $doc->user->first_name . ' ' . $doc->user->last_name,
+                    'specialization' => $doc->specialization,
+                    'status' => $doc->status,
+                ];
+            });
+
         return response()->json([
             'status' => 'success',
-
-            // Monthly revenue
-            'monthly_revenue' => $currentRevenue,
-            'monthly_revenue_growth' => round($revenueGrowth, 2),
-
-            // appointmetns today
-            'appointmetns_today' => $appointmetnsToday,
-            'appointmetns_today_growth' => round($appointmetnsGrowth, 2),
-
-            // New doctors approved this month
-            'active_doctors' => Doctor::where('status', 'approved')
-                ->whereHas('user', function ($q) {
-                    $q->where('status', 'active');
-                })
-                ->count(),
-            'new_doctors_this_month' => $newDoctorsThisMonth,
-
-            // Active users
-            'total_users' => User::where('status', 'active')->count(),
-
-            'active_users_growth' => round($userGrowth, 2),
+            'stats' => [
+                'consultations_today' => $consultationsToday,
+                'active_doctors'      => $activeDoctors,
+                'total_users'         => $totalUsers,
+                'latest_consultations' => $latestConsultations,
+                'latest_join_requests' => $latestJoinRequests,
+            ]
         ]);
     }
 }
