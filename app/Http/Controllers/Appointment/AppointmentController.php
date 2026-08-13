@@ -141,8 +141,33 @@ public function store(Request $request)
             ], 400);
         }
 
-        $appointment->status = 'completed';
-        $appointment->save();
+        // Combine date + end_time into a Carbon datetime
+        $appointmentEnd = Carbon::parse($appointment->date . ' ' . $appointment->end_time);
+
+        // Check if appointment has actually finished
+        if (Carbon::now()->lt($appointmentEnd)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Appointment cannot be completed before it ends'
+            ], 400);
+        }
+
+        // Validate medical fields
+        $request->validate([
+            'symptoms'     => 'required|string',
+            'diagnosis'    => 'required|string',
+            'prescription' => 'required|string',
+            'notes'        => 'nullable|string',
+        ]);
+
+        // Update appointment status + medical fields
+        $appointment->update([
+            'status'       => 'completed',
+            'symptoms'     => $request->symptoms,
+            'diagnosis'    => $request->diagnosis,
+            'prescription' => $request->prescription,
+            'notes'        => $request->notes,
+        ]);
 
         // Update statistics
         $doctor = $appointment->doctor;
@@ -153,8 +178,23 @@ public function store(Request $request)
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Appointment marked as completed'
+            'message' => 'Appointment marked as completed',
+            'appointment' => [
+                'id'          => $appointment->id,
+                'doctor_id'   => $appointment->doctor_id,
+                'patient_id'  => $appointment->patient_id,
+                'date'        => $appointment->date,
+                'start_time'  => Carbon::parse($appointment->start_time)->format('H:i'),
+                'end_time'    => Carbon::parse($appointment->end_time)->format('H:i'),
+                'status'      => $appointment->status,
+                'symptoms'    => $appointment->symptoms,
+                'diagnosis'   => $appointment->diagnosis,
+                'prescription'=> $appointment->prescription,
+                'notes'       => $appointment->notes,
+            ]
         ]);
     }
+
+
 
 }

@@ -41,7 +41,7 @@ Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->g
     Route::put('/profile', [DoctorProfileController::class, 'update']);
 
 
-    Route::put('/appointments/{id}/complete', [AppointmentController::class, 'complete']);
+    Route::put('/consultations/{id}/complete', [AppointmentController::class, 'complete']);
     
     Route::get('/consultations/{id}', [DoctorConsultationsController::class, 'show']);
 });

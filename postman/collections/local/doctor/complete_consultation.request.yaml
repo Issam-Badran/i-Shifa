@@ -1,0 +1,20 @@
+$kind: http-request
+name: complete_consultation
+url: http://127.0.0.1:8000/api/doctor/consultations/7/complete
+method: PUT
+headers:
+  Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
+body:
+  type: json
+  content: "{\r
+
+    \    \"symptoms\": \"Chest pain and fatigue\",\r
+
+    \    \"diagnosis\": \"Angina\",\r
+
+    \    \"prescription\": \"Aspirin 81mg daily\",\r
+
+    \    \"notes\": \"Follow-up in 2 weeks\"\r
+
+    }\r\n"
+order: 2030723573556836
