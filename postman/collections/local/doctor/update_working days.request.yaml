@@ -6,5 +6,5 @@ headers:
   Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
 body:
   type: json
-  content: "{\r\n  \"is_open\": true\r\n}\r\n"
-order: 14000
+  content: "{\r\n  \"is_open\": 1\r\n}\r\n"
+order: 15000

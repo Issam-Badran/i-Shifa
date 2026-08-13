@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Doctor\DoctorAppointmentController;
 use App\Http\Controllers\Doctor\DoctorConsultationsController;
 use App\Http\Controllers\Doctor\DoctorPatientsController;
@@ -6,6 +7,7 @@ use App\Http\Controllers\Doctor\DoctorProfileController;
 use App\Http\Controllers\Doctor\DoctorTimeSlotsController;
 use App\Http\Controllers\Doctor\DoctorWorkingDaysController;
 use App\Http\Controllers\Doctor\DoctorDashboardController;
+use App\Http\Controllers\Doctor\SpecializationController;
 
 Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->group(function () {
 
@@ -38,6 +40,8 @@ Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->g
     Route::get('/profile', [DoctorProfileController::class, 'show']);
     Route::put('/profile', [DoctorProfileController::class, 'update']);
 
+
+    Route::put('/appointments/{id}/complete', [AppointmentController::class, 'complete']);
     
     Route::get('/consultations/{id}', [DoctorConsultationsController::class, 'show']);
 });

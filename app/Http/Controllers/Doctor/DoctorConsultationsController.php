@@ -73,7 +73,7 @@ class DoctorConsultationsController extends Controller
                 'patient_last_name' => $appointment->patient->user->last_name,
                 'status' => $statusLabel,
                 'date' => $appointment->date,
-                'time' => $appointment->start_time,
+                'start_time' => Carbon::parse($appointment->start_time)->format('H:i'),
                 'duration' => $appointment->duration, // NEW
             ];
         });
@@ -119,7 +119,8 @@ class DoctorConsultationsController extends Controller
                 'id' => $appointment->id,
                 'status' => $statusLabel,
                 'date' => $appointment->date,
-                'time' => $appointment->start_time,
+                'start_time' => Carbon::parse($appointment->start_time)->format('H:i'),
+
                 'duration' => $appointment->duration,
 
                 // NEW medical fields

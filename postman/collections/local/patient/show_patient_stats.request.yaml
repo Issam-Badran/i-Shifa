@@ -1,7 +1,6 @@
 $kind: http-request
-name: show_stats
 url: http://127.0.0.1:8000/api/patient/dashboard
 method: GET
 headers:
-  Authorization: Bearer 31|M9qwORW0s5DotS5tl9Jwx1TYI9gOIwg2vZeSUQUX07c4de92
+  Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
 order: 7000

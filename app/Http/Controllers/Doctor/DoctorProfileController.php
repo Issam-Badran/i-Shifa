@@ -47,7 +47,8 @@ class DoctorProfileController extends Controller
             'last_name' => 'string|nullable',
             'phone' => 'string|nullable',
 
-            'specialization' => 'string|nullable',
+            'specialization' => 'required|in:طب عام,طب القلب,طب الأطفال,طب الأسرة,طب العيون,طب الأعصاب,الأمراض الجلدية,أمراض النساء,جراحة عامة,جراحة العظام,جراحة الأعصاب,جراحة التجميل,جراحة الأوعية,جراحة الصدر,جراحة المسالك,الأمراض الصدرية,الأمراض الباطنية,أمراض الغدد,أمراض الكلى,أمراض الدم,أمراض الروماتيزم,أمراض المناعة,أمراض الهضم,أمراض الأنف والأذن والحنجرة,الطب النفسي,طب الطوارئ,طب التخدير,طب الأورام,طب الجلدية والتجميل,طب الشيخوخة,طب الفيزياء والتأهيل',
+
             'sub_specialization' => 'string|nullable',
             'experience_years' => 'integer|nullable',
             'languages' => 'string|nullable',

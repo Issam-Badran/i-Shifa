@@ -5,24 +5,32 @@ namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use App\Models\DoctorTimeSlot;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DoctorTimeSlotsController extends Controller
 {
     /**
      * List all time slots for the doctor
      */
-
-
-    
     public function index(Request $request)
     {
-        
         $doctor = $request->user()->doctor;
 
         $slots = DoctorTimeSlot::where('doctor_id', $doctor->id)
             ->orderBy('day_of_week')
             ->orderBy('start_time')
-            ->get();
+            ->get()
+            ->map(function ($slot) {
+                return [
+                    'id' => $slot->id,
+                    'doctor_id' => $slot->doctor_id,
+                    'day_of_week' => $slot->day_of_week,
+                    'start_time' => Carbon::parse($slot->start_time)->format('H:i'),
+                    'end_time' => Carbon::parse($slot->end_time)->format('H:i'),
+                    'created_at' => $slot->created_at,
+                    'updated_at' => $slot->updated_at,
+                ];
+            });
 
         return response()->json([
             'status' => 'success',
@@ -74,7 +82,15 @@ class DoctorTimeSlotsController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Time slot added successfully',
-            'slot' => $slot
+            'slot' => [
+                'id' => $slot->id,
+                'doctor_id' => $slot->doctor_id,
+                'day_of_week' => $slot->day_of_week,
+                'start_time' => Carbon::parse($slot->start_time)->format('H:i'),
+                'end_time' => Carbon::parse($slot->end_time)->format('H:i'),
+                'created_at' => $slot->created_at,
+                'updated_at' => $slot->updated_at,
+            ]
         ]);
     }
 
@@ -124,7 +140,15 @@ class DoctorTimeSlotsController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Time slot updated successfully',
-            'slot' => $slot
+            'slot' => [
+                'id' => $slot->id,
+                'doctor_id' => $slot->doctor_id,
+                'day_of_week' => $slot->day_of_week,
+                'start_time' => Carbon::parse($slot->start_time)->format('H:i'),
+                'end_time' => Carbon::parse($slot->end_time)->format('H:i'),
+                'created_at' => $slot->created_at,
+                'updated_at' => $slot->updated_at,
+            ]
         ]);
     }
 
@@ -139,7 +163,6 @@ class DoctorTimeSlotsController extends Controller
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        // Safe to delete because appointments store their own date/time
         $slot->delete();
 
         return response()->json([

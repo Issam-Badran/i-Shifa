@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Appointment;
 
+use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\DoctorTimeSlot;
 use App\Models\DoctorWorkingDay;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -14,6 +16,7 @@ class AppointmentController extends Controller
      */
 public function store(Request $request)
 {
+    // dd($request);
     $request->validate([
         'doctor_id'  => 'required|exists:doctors,id',
         'date'       => 'required|date',
@@ -25,12 +28,14 @@ public function store(Request $request)
     $date = $request->date;
 
     // 1. Check doctor works that day
-    $dayOfWeek = date('w', strtotime($date));
+    $carbonDay = Carbon::parse($date)->dayOfWeek; // 0=Sun ... 6=Sat
+    $dayOfWeek = ($carbonDay + 1) % 7; // Convert to your DB format
 
     $workingDay = DoctorWorkingDay::where('doctor_id', $doctorId)
         ->where('day_of_week', $dayOfWeek)
         ->where('is_open', true)
         ->first();
+
 
     if (!$workingDay) {
         return response()->json([

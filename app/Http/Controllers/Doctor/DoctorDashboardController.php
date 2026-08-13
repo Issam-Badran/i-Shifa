@@ -96,7 +96,7 @@ class DoctorDashboardController extends Controller
             ->map(function ($appointment) {
                 return [
                     'patient_name' => $appointment->patient->name,
-                    'time' => $appointment->start_time,
+                    'start_time' => Carbon::parse($appointment->start_time)->format('H:i'),
                 ];
             });
 

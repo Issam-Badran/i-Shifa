@@ -37,7 +37,7 @@ class Appointment extends Model
         if ($appointment->start_time && $appointment->end_time) {
             $start = Carbon::parse($appointment->start_time);
             $end = Carbon::parse($appointment->end_time);
-            $appointment->duration = $end->diffInMinutes($start);
+            $appointment->duration = $start->diffInMinutes($end);
         }
     });
 }

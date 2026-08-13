@@ -3,8 +3,18 @@ name: book_appointment
 url: http://127.0.0.1:8000/api/patient/appointments
 method: POST
 headers:
-  Authorization: Bearer 31|M9qwORW0s5DotS5tl9Jwx1TYI9gOIwg2vZeSUQUX07c4de92
+  Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
 body:
   type: json
-  content: ""
-order: 2000
+  content: "{\r
+
+    \    \"doctor_id\": 2,\r
+
+    \    \"date\": \"2026-08-16\",\r
+
+    \    \"start_time\": \"10:00\",\r
+
+    \    \"end_time\": \"10:30\"\r
+
+    }\r\n"
+order: 6000
