@@ -1,0 +1,7 @@
+$kind: http-request
+name: show_working_days
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/doctor/working-days
+method: GET
+headers:
+  Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
+order: 11000

@@ -1,0 +1,19 @@
+$kind: http-request
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/profile
+method: POST
+headers:
+  Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
+body:
+  type: json
+  content: "{\r
+
+    \  \"age\": 35,\r
+
+    \  \"height\": 175,\r
+
+    \  \"weight\": 75,\r
+
+    \  \"phone\": \"+966501234567\"\r
+
+    }"
+order: 9000

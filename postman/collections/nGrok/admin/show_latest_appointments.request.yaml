@@ -1,0 +1,8 @@
+$kind: http-request
+name: show_latest_appointments
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/appointments/latest
+method: GET
+headers:
+  - key: Authorization
+    value: Bearer 1|HY209DDh0u3ABs4xFOLkSYqkWlwgj9BfYh4NyjAW847e30d3
+order: 14000

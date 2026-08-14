@@ -1,0 +1,4 @@
+$kind: http-request
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/specializations
+method: GET
+order: 3305172501386156

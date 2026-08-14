@@ -1,7 +1,20 @@
 $kind: http-request
 name: book_appointment
-url: http://127.0.0.1:8000/api/patient/appointments
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/appointments
 method: POST
 headers:
-  Authorization: Bearer 2|1NgX2D3ex4irFrfSivr9s3PbJNayqjXX5J3GmcLW16cd21d3
-order: 2000
+  Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
+body:
+  type: json
+  content: "{\r
+
+    \    \"doctor_id\": 2,\r
+
+    \    \"date\": \"2026-08-16\",\r
+
+    \    \"start_time\": \"10:00\",\r
+
+    \    \"end_time\": \"10:30\"\r
+
+    }\r\n"
+order: 6000

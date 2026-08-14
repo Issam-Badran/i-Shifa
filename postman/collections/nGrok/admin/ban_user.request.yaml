@@ -1,6 +1,6 @@
 $kind: http-request
-name: email_verification
-url: https://wolflike-merri-nugatory.ngrok-free.dev/api/email/verification-notification
+name: ban_user
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/users/6/ban
 method: POST
 headers:
   Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8

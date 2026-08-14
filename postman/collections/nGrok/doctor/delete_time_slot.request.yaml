@@ -1,0 +1,10 @@
+$kind: http-request
+name: delete_time_slot
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/doctor/time-slots/3
+method: DELETE
+headers:
+  Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
+body:
+  type: json
+  content: ""
+order: 12000

@@ -1,7 +1,7 @@
 $kind: http-request
-name: show_patient_profile
-url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/profile
+name: show_doctor_booking_info
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/doctors
 method: GET
 headers:
   Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
-order: 8000
+order: 2000

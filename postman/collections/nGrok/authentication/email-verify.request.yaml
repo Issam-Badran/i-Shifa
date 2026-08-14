@@ -1,0 +1,13 @@
+$kind: http-request
+name: email-verify
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/email/verify?expires=1778863030&hash=16d2923a82b438198343d8d43f8adbf47718a6e9&id=35&signature=6a70b5deb107b481f4f3ba3334ac91209d75743d38fa81e3483c6f875e984c89
+method: GET
+queryParams:
+  expires: "1778863030"
+  hash: 16d2923a82b438198343d8d43f8adbf47718a6e9
+  id: "35"
+  signature: 6a70b5deb107b481f4f3ba3334ac91209d75743d38fa81e3483c6f875e984c89
+body:
+  type: json
+  content: ""
+order: 1000

@@ -1,0 +1,12 @@
+$kind: http-request
+name: show_single_appointment
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/appointments/1
+method: GET
+headers:
+  - key: Authorization
+    value: Bearer 1|HY209DDh0u3ABs4xFOLkSYqkWlwgj9BfYh4NyjAW847e30d3
+queryParams:
+  - key: ""
+    value: ""
+    disabled: true
+order: 15000

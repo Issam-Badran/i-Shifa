@@ -1,0 +1,7 @@
+$kind: http-request
+name: cancel_appointment
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/appointments/5/cancel
+method: PUT
+headers:
+  Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
+order: 5802

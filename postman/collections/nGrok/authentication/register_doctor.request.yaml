@@ -1,0 +1,54 @@
+$kind: http-request
+name: register_doctor
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/register
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: first_name
+      value: Nader
+      description: ""
+      disabled: false
+    - type: text
+      key: last_name
+      value: Atasy
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: nader@gmail.com
+      description: ""
+      disabled: false
+    - type: text
+      key: password
+      value: "123456"
+      description: ""
+      disabled: false
+    - type: text
+      key: role
+      value: doctor
+      description: ""
+      disabled: false
+    - type: text
+      key: latitude
+      value: "341.23"
+      description: ""
+      disabled: false
+    - type: text
+      key: latitude
+      value: "122.13"
+      description: ""
+      disabled: false
+    - type: text
+      key: specialization
+      value: Cardiology
+      description: ""
+      disabled: false
+    - type: file
+      key: degree_file
+      src:
+        - /C:/Users/ASUS/Desktop/trash/598485896_122199225812290966_7475564829743833014_n.jpg
+      description: ""
+      disabled: false
+order: 8000
