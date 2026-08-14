@@ -22,6 +22,8 @@ class PatientProfileController extends Controller
                 'weight' => $patient->weight,
                 'phone' => $patient->phone,
                 'email' => $user->email,
+                'latitude' => $user->latitude,
+                'longitude' => $user->longitude,
             ]
         ]);
     }
@@ -45,6 +47,8 @@ class PatientProfileController extends Controller
         if ($request->filled('first_name')) $user->first_name = $request->first_name;
         if ($request->filled('last_name')) $user->last_name = $request->last_name;
         if ($request->filled('email')) $user->email = $request->email;
+        if ($request->filled('latitude')) $user->latitude = $request->latitude;
+        if ($request->filled('longitude')) $user->longitude = $request->longitude;
         $user->save();
 
         // Update patient fields

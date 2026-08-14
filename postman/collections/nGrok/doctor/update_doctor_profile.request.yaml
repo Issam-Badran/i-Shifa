@@ -16,7 +16,7 @@ body:
 
     \r
 
-    \  \"specialization\": \"Cardiology\",\r
+    \  \"specialization\": \"طب عام\",\r
 
     \  \"sub_specialization\": \"Internal Cardiac Catheterization\",\r
 
@@ -26,12 +26,15 @@ body:
 
     \  \"license_number\": \"SY-MOH-2024-4521\",\r
 
-    \  \"degree\": \"PhD in Cardiology\",\r
+    \  \"degree\": \"PhD in Ca rdiology\",\r
 
     \  \"university\": \"Damascus University\",\r
 
-    \  \"bio\": \"Cardiologist with 15 years of experience in internal
-    catheterization.\"\r
+    \  \"bio\": \"Cardiologist with 15 years of experience in internal catheterization.\",\r
+
+    \  \"latitude\": \"35.1234560\",\r
+
+    \    \"longitude\": \"36.9876540\"\r
 
     }\r\n"
 order: 5000

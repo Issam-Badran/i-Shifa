@@ -1,4 +1,5 @@
 $kind: http-request
+name: update_patient_profile
 url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/profile
 method: POST
 headers:
@@ -13,7 +14,11 @@ body:
 
     \  \"weight\": 75,\r
 
-    \  \"phone\": \"+966501234567\"\r
+    \  \"phone\": \"+966501234567\",\r
+
+    \  \"latitude\": \"35.1234560\",\r
+
+    \        \"longitude\": \"40.9876540\"\r
 
     }"
 order: 9000
