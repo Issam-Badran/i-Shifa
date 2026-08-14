@@ -34,7 +34,7 @@ public function verify(Request $request)
         // Auto-login anyway
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return redirect(config('app.frontend_url') . "/email-verified?token={$token}");
+        return redirect(config('app.frontend_url') . "?token={$token}");
     }
 
     // 3. Validate signature
@@ -50,7 +50,7 @@ public function verify(Request $request)
     $token = $user->createToken('auth_token')->plainTextToken;
 
     // 6. Redirect to frontend with token
-    return redirect(config('app.frontend_url') . "/email-verified?token={$token}");
+    return redirect(config('app.frontend_url') . "?token={$token}");
 }
 
 
