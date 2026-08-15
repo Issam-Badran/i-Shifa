@@ -4,6 +4,7 @@ use App\Http\Controllers\Doctor\DoctorAppointmentController;
 use App\Http\Controllers\Doctor\DoctorConsultationsController;
 use App\Http\Controllers\Doctor\DoctorPatientsController;
 use App\Http\Controllers\Doctor\DoctorProfileController;
+use App\Http\Controllers\Doctor\DoctorScheduleController;
 use App\Http\Controllers\Doctor\DoctorTimeSlotsController;
 use App\Http\Controllers\Doctor\DoctorWorkingDaysController;
 use App\Http\Controllers\Doctor\DoctorDashboardController;
@@ -19,6 +20,7 @@ Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->g
 
     Route::get('/time-slots', [DoctorTimeSlotsController::class, 'index']);
 
+    Route::get('/schedule', [DoctorScheduleController::class, 'index']);
 
     
     Route::post('/time-slots', [DoctorTimeSlotsController::class, 'store']);
