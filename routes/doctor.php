@@ -14,13 +14,23 @@ Route::middleware(['auth:sanctum', 'isDoctor', 'verified'])->prefix('doctor')->g
 
 
 
-    Route::get('/working-days', [DoctorWorkingDaysController::class, 'index']);
+    // Route::get('/working-days', [DoctorWorkingDaysController::class, 'index']);
 
     Route::put('/working-days/{dayId}', [DoctorWorkingDaysController::class, 'update']);
 
-    Route::get('/time-slots', [DoctorTimeSlotsController::class, 'index']);
+    // Route::get('/time-slots', [DoctorTimeSlotsController::class, 'index']);
+
+
+
+
+
 
     Route::get('/schedule', [DoctorScheduleController::class, 'index']);
+    Route::put('/schedule', [DoctorScheduleController::class, 'update']);
+
+
+
+
 
     
     Route::post('/time-slots', [DoctorTimeSlotsController::class, 'store']);

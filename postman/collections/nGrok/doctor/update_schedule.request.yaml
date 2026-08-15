@@ -1,0 +1,32 @@
+$kind: http-request
+name: update_schedule
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/doctor/schedule
+method: PUT
+headers:
+  Authorization: Bearer 8|68fAcIQD0aBm7fYuDGcpZ7fafdkSHTyrDY9gP1ZLd5dd4170
+body:
+  type: json
+  content: "{\r
+
+    \  \"days\": [\r
+
+    \    { \"id\": 1, \"is_open\": true },\r
+
+    \    { \"id\": 2, \"is_open\": true },\r
+
+    \    { \"id\": 3, \"is_open\": false }\r
+
+    \  ],\r
+
+    \  \"slots\": [\r
+
+    \    { \"id\": 11, \"day_of_week\": 0, \"start_time\": \"09:00\", \"end_time\": \"12:00\" },\r
+
+    \    { \"day_of_week\": 0, \"start_time\": \"13:00\", \"end_time\": \"15:00\" },\r
+
+    \    { \"id\": 5, \"delete\": true }\r
+
+    \  ]\r
+
+    }\r\n"
+order: 10694
