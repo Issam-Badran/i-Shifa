@@ -1,0 +1,16 @@
+$kind: http-request
+name: add_patient_ai_consultation
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/ai/consultations
+method: POST
+headers:
+  Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
+body:
+  type: json
+  content: "{\r
+
+    \  \"diagnosis\": \"سرطاااان\",\r
+
+    \  \"suggested_specialization\": \"طب عام\"\r
+
+    }\r\n"
+order: 6000

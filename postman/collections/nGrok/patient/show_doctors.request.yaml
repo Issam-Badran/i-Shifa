@@ -4,4 +4,4 @@ url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/doctors
 method: GET
 headers:
   Authorization: Bearer 20|I1f4x1FKmZMx5LxAnON1qL431C6GJepDxSCxvGo88c9309ac
-order: 4000
+order: 3000

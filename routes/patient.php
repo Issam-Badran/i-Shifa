@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Doctor\DoctorBookingInfoController;
+use App\Http\Controllers\Patient\AIConsultationController;
 use App\Http\Controllers\Patient\DoctorListingController;
 use App\Http\Controllers\Patient\PatientConsultationsController;
 use App\Http\Controllers\Patient\PatientDashboardController;
@@ -23,6 +24,16 @@ Route::middleware(['auth:sanctum', 'isPatient', 'verified'])->prefix('patient')-
 
     Route::post('/appointments', [AppointmentController::class, 'store']);
     Route::put('/appointments/{id}/cancel', [AppointmentController::class, 'cancel']);
+
+
+        // List all consultations for the logged-in patient
+    Route::get('/ai/consultations', [AIConsultationController::class, 'index']);
+
+    // Store a new consultation
+    Route::post('/ai/consultations', [AIConsultationController::class, 'store']);
+
+    // Show one consultation
+    Route::get('/ai/consultations/{id}', [AIConsultationController::class, 'show']);
 
 
 });

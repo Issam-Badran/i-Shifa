@@ -4,4 +4,4 @@ url: https://wolflike-merri-nugatory.ngrok-free.dev/api/patient/2/booking-info
 method: GET
 headers:
   Authorization: Bearer 9|do80xR0KyqLLliuKhRrXNxa1iXrrqOW42n8AAY3i5ef0293a
-order: 3000
+order: 2000

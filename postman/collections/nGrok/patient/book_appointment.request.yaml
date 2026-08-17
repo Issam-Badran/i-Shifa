@@ -8,13 +8,13 @@ body:
   type: json
   content: "{\r
 
-    \    \"doctor_id\": 2,\r
+    \    \"doctor_id\": 9,\r
 
-    \    \"date\": \"2026-08-16\",\r
+    \    \"date\": \"2026-08-18\",\r
 
-    \    \"start_time\": \"10:00\",\r
+    \    \"start_time\": \"14:00\",\r
 
-    \    \"end_time\": \"10:30\"\r
+    \    \"end_time\": \"15:00\"\r
 
-    }\r\n"
-order: 6000
+    }"
+order: 5000
