@@ -43,7 +43,7 @@ class ApiAuthenticatedSessionController extends Controller
         if ($user->role === 'doctor' && $user->doctor) {
             $userData['doctor_status'] = $user->doctor->status;
         }
-
+ 
         return response()->json([
             'status'  => 'success',
             'message' => 'Logged in successfully',
