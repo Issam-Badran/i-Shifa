@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminAppointmentController;
 use App\Http\Controllers\Admin\AdminPaymentsController;
 use App\Http\Controllers\Admin\AdminStatsController;
 use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\DoctorStatusController;
 use App\Http\Controllers\Admin\PlatformSettingsController;
 
 
@@ -48,6 +49,12 @@ Route::middleware(['auth:sanctum', 'isAdmin' , 'verified'])->prefix('admin')->gr
     // Route::get('/stats', [AdminStatsController::class, 'index']);
 
     // List all users
+
+        // عرض حالة طبيب محدد
+    Route::get('/doctors/{id}/status', [DoctorStatusController::class, 'show']);
+
+    // تعديل حالة الطبيب
+    Route::put('/doctors/{id}/status', [DoctorStatusController::class, 'update']);
 
 
         

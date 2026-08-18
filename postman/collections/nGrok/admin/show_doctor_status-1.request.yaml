@@ -1,6 +1,6 @@
 $kind: http-request
-name: update_settings
-url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/settings
+name: show_doctor_status
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/doctors/1/status
 method: PUT
 headers:
   Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
@@ -8,7 +8,7 @@ body:
   type: json
   content: "{\r
 
-    \  \"site_name\": \"iShifa\"\r
+    \  \"status_value\": \"pending\"\r
 
     }\r\n"
-order: 11000
+order: 2503

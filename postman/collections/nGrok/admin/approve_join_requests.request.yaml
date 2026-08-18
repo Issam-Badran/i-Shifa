@@ -3,4 +3,4 @@ url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/join-requests/2/ap
 method: POST
 headers:
   Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
-order: 5000
+order: 7000

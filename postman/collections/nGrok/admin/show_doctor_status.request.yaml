@@ -1,7 +1,6 @@
 $kind: http-request
-name: show_settings
-url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/settings
+url: https://wolflike-merri-nugatory.ngrok-free.dev/api/admin/doctors/1/status
 method: GET
 headers:
   Authorization: Bearer 10|7gG1sWmUtPvQRYzjJW0SAIeES11lNdRwGM7tXPWN3154cac8
-order: 10000
+order: 3000
