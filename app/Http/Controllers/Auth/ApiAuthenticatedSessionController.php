@@ -38,11 +38,17 @@ class ApiAuthenticatedSessionController extends Controller
         // 4. Create Sanctum token
         $token = $user->createToken('api-token')->plainTextToken;
 
+        // 5. Add doctor status if user is a doctor
+        $userData = $user->toArray();
+        if ($user->role === 'doctor' && $user->doctor) {
+            $userData['doctor_status'] = $user->doctor->status;
+        }
+
         return response()->json([
             'status'  => 'success',
             'message' => 'Logged in successfully',
             'token'   => $token,
-            'user'    => $user
+            'user'    => $userData
         ], 200);
     }
 
